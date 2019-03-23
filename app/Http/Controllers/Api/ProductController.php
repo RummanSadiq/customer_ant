@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Product;
 use App\Category;
+use App\Store;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +19,13 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $products = Products::all();
+        return response()->json($products);
+    }
+
+    public function myProducts()
+    {
+        
         $user = Auth::user();
         $store = $user->store;
         $products = $store->products->reverse()->values();
@@ -27,6 +36,17 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
+
+    public function getShopProducts($shop_id) {
+        
+        $store = Store::find($shop_id);
+        $products = $store->products->reverse()->values();
+        foreach($products as $prod) {
+            $prod["key"] = $prod->id;
+            $prod["category"] = Category::find($prod->category_id)->name;
+        }
+        return response()->json($products);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -60,9 +80,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($product_id)
     {
-        //
+        $product = Product::find($product_id);
+        $product["key"] = $product->id;
+        $product["category"] = Category::find($product->category_id)->name;
+        return response()->json($product);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Post;
 use App\User;
+use App\Store;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,6 +24,14 @@ class PostController extends Controller
 
         $store = $user->store;
         // $posts = $store->posts->sortByDesc('created_at');
+        $posts = $store->posts->reverse()->values();
+        return response()->json($posts);
+    }
+    
+
+    public function getShopPosts($store_id)
+    {
+        $store = Store::find($store_id);
         $posts = $store->posts->reverse()->values();
         return response()->json($posts);
     }

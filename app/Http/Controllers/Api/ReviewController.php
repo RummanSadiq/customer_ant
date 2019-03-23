@@ -18,8 +18,8 @@ class ReviewController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $store = $user->store;
-        $reviews = $store->reviews;
+        // $user = User::find(2);
+        $reviews = $user->reviews;
 
         foreach($reviews as $rev) {
             $rev["key"] = $rev->id;
@@ -47,6 +47,7 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
+        // $user = User::find(2);
         $request['user_id'] = $user->id;
         $review = Review::create($request->all());
         return response()->json($review, 201);
@@ -83,9 +84,9 @@ class ReviewController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $review = Review::find($id);
-        $review->update($request->all());
-        return response()->json($review, 201);
+        // $review = Review::find($id);
+        // $review->update($request->all());
+        // return response()->json($review, 201);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Faq;
 use App\Store;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,14 @@ class FaqController extends Controller
         return response()->json($faqs);
     }
 
+    
+
+    public function getShopFaqs($store_id)
+    {
+        $store = Store::find($store_id);
+        $faqs = $store->faqs;
+        return response()->json($faqs);
+    }
     /**
      * Show the form for creating a new resource.
      *

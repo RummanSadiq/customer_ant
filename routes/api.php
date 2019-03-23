@@ -33,6 +33,8 @@ Route::get('/categories/{parent}', 'Api\CategoryController@show');
 
 //Posts
 Route::get('/posts', 'Api\PostController@index');
+Route::get('/posts/shop/{id}', 'Api\PostController@getShopPosts');
+
 Route::post('/posts', 'Api\PostController@store');
 Route::post('/product_post', 'Api\PostController@productPost');
 Route::post('/posts/{id}', 'Api\PostController@update');
@@ -40,14 +42,15 @@ Route::delete('/posts/{id}', 'Api\PostController@destroy');
 // Route::get('/myposts', 'Api\PostController@show');
 
 //Products
-Route::get('/products', 'Api\ProductController@index');
-Route::post('/products', 'Api\ProductController@store');
-Route::post('/products/{id}', 'Api\ProductController@update');
-Route::delete('/products/{id}', 'Api\ProductController@destroy');
+Route::get('/allproducts', 'Api\ProductController@index');
+Route::get('/products/shop/{id}', 'Api\ProductController@getShopProducts');
+Route::get('/products/{id}', 'Api\ProductController@show');
 
 
 //Faqs
 Route::get('/faqs', 'Api\FaqController@index');
+Route::get('/faqs/shop/{id}', 'Api\FaqController@getShopFaqs');
+
 Route::post('/faqs', 'Api\FaqController@store');
 Route::post('/faqs/{id}', 'Api\FaqController@update');
 Route::delete('/faqs/{id}', 'Api\FaqController@destroy');
@@ -55,7 +58,7 @@ Route::delete('/faqs/{id}', 'Api\FaqController@destroy');
 //Reviews
 Route::get('/reviews', 'Api\ReviewController@index');
 Route::post('/reviews', 'Api\ReviewController@store');
-Route::post('/reviews/{id}', 'Api\ReviewController@update');
+// Route::post('/reviews/{id}', 'Api\ReviewController@update');
 Route::delete('/reviews/{id}', 'Api\ReviewController@destroy');
 
 
