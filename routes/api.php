@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //Shop
 Route::get('/shops', 'Api\StoreController@index');
+Route::get('/shops/{id}', 'Api\StoreController@show');
 Route::post('/shop', 'Api\StoreController@store');
 Route::post('/updateshop', 'Api\StoreController@update');
 Route::delete('/shops/{id}', 'Api\StoreController@destroy');
