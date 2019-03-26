@@ -84,7 +84,14 @@ class StoreController extends Controller
      */
     public function show($id)
     {
-        //
+        $store = Store::find($id);
+
+        $store['store_owner'] = User::find($store->user_id)->name;
+        $store['store_type'] = StoreType::find($store->store_type_id)->name;
+        $store['address'] = Address::find($store->address_id)->place;
+
+        return response()->json($store);
+
     }
 
     /**
