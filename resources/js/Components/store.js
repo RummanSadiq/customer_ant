@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import {
-  Col,
-  Card,
-  Row,
-  Carousel,
-  Button,
-  Layout,
-  List,
-  Avatar,
-  Rate
+    Col,
+    Card,
+    Row,
+    Carousel,
+    Button,
+    Layout,
+    List,
+    Avatar,
+    Rate,
+    Icon
 } from "antd";
+import Products from "./LimitedProducts";
 import axios from "axios";
-
 
 import cimage from "../Images/img1.jpg";
 import pimage from "../Images/pimg.png";
@@ -21,209 +22,288 @@ import MenuItem from "antd/lib/menu/MenuItem";
 const { Meta } = Card;
 const { Header, Content, Footer } = Layout;
 class Store extends Component {
-  state = {
-    products: [
-      { picture: "", name: "Product name here", price: "250$" },
-      {
-        picture: "",
-        name: "Product name here",
-        price: "250$"
-      },
-      { picture: "", name: "Product name here", price: "250$" },
-      {
-        picture: "",
-        name: "Product name here",
-        price: "250$"
-      },
-      { picture: "", name: "Product name here", price: "250$" },
-      {
-        picture: "",
-        name: "Product name here",
-        price: "250$"
-      }
-    ],
-    store:{},
-    faqs:[],
-    Reviews: [
-      {
-        title: `ant design part`,
-        avatar:
-          "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-        description:
-          "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-        content:
-          "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-      },
-      {
-        title: `ant design part`,
-        avatar:
-          "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-        description:
-          "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-        content:
-          "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-      },
-      {
-        title: `ant design part`,
-        avatar:
-          "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-        description:
-          "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-        content:
-          "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-      },
-      {
-        title: `ant design part`,
-        avatar:
-          "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-        description:
-          "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-        content:
-          "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-      },
-      {
-        title: `ant design part`,
-        avatar:
-          "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-        description:
-          "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-        content:
-          "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-      }
-    ]
-  };
-  componentDidMount (){
-    console.log(this.props.match.params);
-    axios.get("/api/shop/"+this.props.match.params.id).then(res => {
-      const storedata = res.data;
-      console.log(storedata);
-      this.setState({ faqs: storedata });
-  });
-//   axios.get("/api/reviews").then(res => {
-//     const reviewsData = res.data;
-//     console.log(reviewsData);
-//     this.setState({ reviews: reviewsData });
-// });
-  }
-  render() {
-    return (
-      <div>
-        <Row>
-          <Col>
-            <Carousel>
-              <div>
-                <img src={cimage} width="100%" height="100%" alt="image" />
-              </div>
-              <div>
-                <img src={cimage} width="100%" height="100%" alt="image" />
-              </div>
-              <div>
-                <img src={cimage} width="100%" height="100%" alt="image" />
-              </div>
-              <div>
-                <img src={cimage} width="100%" height="100%" alt="image" />
-              </div>
-              <div>
-                <img src={cimage} width="100%" height="100%" alt="image" />
-              </div>
-            </Carousel>
-          </Col>
-        </Row>
-        <Row style={{ marginTop: "3%" }}>
-          <Col span={12} offset={6}>
-            <Card
-              title={<h1 style={{ textAlign: "center" }}>Information</h1>}
-              bordered={false}
-              extra={
-                <div>
-                  <Button type="primary" icon="plus" size="large" shape="round">
-                    Follow
-                  </Button>
-                  <Button
-                    type="primary"
-                    icon="message"
-                    size="large"
-                    shape="round"
-                  >
-                    Message
-                  </Button>
-                  <div>
-                    Number of Followers{" "}
-                    <span>
-                      <Rate disabled defaultValue={3} />
-                    </span>
-                  </div>
-                </div>
-              }
-            >
-              Store Information Here
-            </Card>
-          </Col>
-        </Row>
-        <Card
-          title={<h2>Products</h2>}
-          extra={<Button icon="plus">More</Button>}
-          bordered={false}
-          style={{ background: "#ECECEC" }}
-        >
-          <Row gutter={18}>
-            {this.state.products.map(element => (
-              <Col lg={4} sm={4} md={2} xs={8} span={16}>
-                <Card hoverable cover={<img alt="example" src={pimage} />}>
-                  <Meta title={element.name} description={element.price} />
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Card>
-        <Row>
-          <Col
-            xs={6}
-            sm={6}
-            md={8}
-            lg={16}
-            offset={4}
-            type="flex"
-            justify="start"
-          >
-            <Card
-              title="User Reviews"
-              bordered={false}
-              extra={<Button icon="plus">More</Button>}
-            >
-              <List
-                itemLayout="vertical"
-                size="large"
-                pagination={{
-                  onChange: page => {
-                    console.log(page);
-                  },
-                  pageSize: 3
-                }}
-                dataSource={this.state.Reviews}
-           
-                renderItem={item => (
-                  <List.Item
-                    key={item.title}
-                    extra={
-                      <img
-                        width={272}
-                        alt="logo"
-                        src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-                      />
-                    }
-                  >
-                    <List.Item.Meta
-                      avatar={<Avatar src={item.avatar} />}
-                      title={<a href={item.href}>{item.title}</a>}
-                      description={<Rate disabled defaultValue={2} />}
-                    />
-                    {item.content}
-                  </List.Item>
-                )}
-              />
-            </Card>
+    state = {
+        products: [
+            // { picture: "", name: "Product name here", price: "250$" },
+            // {
+            //   picture: "",
+            //   name: "Product name here",
+            //   price: "250$"
+            // },
+            // { picture: "", name: "Product name here", price: "250$" },
+            // {
+            //   picture: "",
+            //   name: "Product name here",
+            //   price: "250$"
+            // },
+            // { picture: "", name: "Product name here", price: "250$" },
+            // {
+            //   picture: "",
+            //   name: "Product name here",
+            //   price: "250$"
+            // }
+        ],
+        store: {},
+        faqs: [],
+        Reviews: [
+            {
+                title: `ant design part`,
+                avatar:
+                    "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+                description:
+                    "Ant Design, a design language for background applications, is refined by Ant UED Team.",
+                content:
+                    "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
+            },
+            {
+                title: `ant design part`,
+                avatar:
+                    "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+                description:
+                    "Ant Design, a design language for background applications, is refined by Ant UED Team.",
+                content:
+                    "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
+            },
+            {
+                title: `ant design part`,
+                avatar:
+                    "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+                description:
+                    "Ant Design, a design language for background applications, is refined by Ant UED Team.",
+                content:
+                    "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
+            },
+            {
+                title: `ant design part`,
+                avatar:
+                    "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+                description:
+                    "Ant Design, a design language for background applications, is refined by Ant UED Team.",
+                content:
+                    "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
+            },
+            {
+                title: `ant design part`,
+                avatar:
+                    "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+                description:
+                    "Ant Design, a design language for background applications, is refined by Ant UED Team.",
+                content:
+                    "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
+            }
+        ]
+    };
+    componentDidMount() {
+        console.log(this.props.match.params);
+        axios.get("/api/shops/" + this.props.match.params.id).then(res => {
+            const storedata = res.data;
+            console.log(storedata);
+            this.setState({ store: storedata });
+        });
 
+        axios
+            .get("/api/products/shop/" + this.props.match.params.id)
+            .then(res => {
+                const productsData = res.data;
+                console.log(productsData);
+                this.setState({ products: productsData });
+            });
+    }
+    render() {
+        return (
+            <div>
+                <Row>
+                    <Col>
+                        <Carousel>
+                            <div>
+                                <img
+                                    src={this.state.store.display_picture}
+                                    width="100%"
+                                    height="100%"
+                                    alt="image"
+                                />
+                            </div>
+                            <div>
+                                <img
+                                    src={this.state.store.display_picture}
+                                    width="100%"
+                                    height="100%"
+                                    alt="image"
+                                />
+                            </div>
+                            <div>
+                                <img
+                                    src={this.state.store.display_picture}
+                                    width="100%"
+                                    height="100%"
+                                    alt="image"
+                                />
+                            </div>
+                            <div>
+                                <img
+                                    src={this.state.store.display_picture}
+                                    width="100%"
+                                    height="100%"
+                                    alt="image"
+                                />
+                            </div>
+                            <div>
+                                <img
+                                    src={this.state.store.display_picture}
+                                    width="100%"
+                                    height="100%"
+                                    alt="image"
+                                />
+                            </div>
+                        </Carousel>
+                    </Col>
+                </Row>
+                <Row style={{ marginTop: "3%" }}>
+                    <Col span={12} offset={6}>
+                        <Card
+                            title={
+                                <h1 style={{ textAlign: "center" }}>
+                                    Information
+                                </h1>
+                            }
+                            bordered={false}
+                            extra={
+                                <div>
+                                    <Button
+                                        type="primary"
+                                        icon="plus"
+                                        size="large"
+                                        shape="round"
+                                    >
+                                        Follow
+                                    </Button>
+                                    <Button
+                                        type="primary"
+                                        icon="message"
+                                        size="large"
+                                        shape="round"
+                                    >
+                                        Message
+                                    </Button>
+                                    <div>
+                                        Number of Followers{" "}
+                                        <span>
+                                            <Rate disabled defaultValue={3} />
+                                        </span>
+                                    </div>
+                                </div>
+                            }
+                        >
+                            <div
+                                style={{
+                                    fontWeight: "bold"
+                                }}
+                            >
+                                <Row>
+                                    <Col span={12} className="infoColumns">
+                                        <span>Store Type: </span>
+                                        {this.state.store.store_type}
+                                    </Col>
+
+                                    <Col span={12} className="infoColumns">
+                                        <span style={{ fontWeight: "bold" }}>
+                                            Store Contact:{" "}
+                                        </span>
+                                        {this.state.store.contact}
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col span={12} className="infoColumns">
+                                        <span>Store Address: </span>
+                                        {this.state.store.address}
+                                    </Col>
+                                    <Col span={12} className="infoColumns">
+                                        <span>Store City: </span>
+                                        {this.state.store.store_type}
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col span={12} className="infoColumns">
+                                        <span>Store opens At: </span>
+                                        {this.state.store.open_time}
+                                    </Col>
+                                    <Col span={12} className="infoColumns">
+                                        {" "}
+                                        <span>Closing Time</span>
+                                        {this.state.store.close_time}
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col span={12} className="infoColumns">
+                                        {this.state.store.delivery > 0 && (
+                                            <span>Store Provides Delivery</span>
+                                        )}
+                                        {this.state.delivery <= 0 && (
+                                            <span>
+                                                Store does not Provide Delivery
+                                            </span>
+                                        )}
+                                    </Col>
+                                    <Col span={12} className="infoColumns">
+                                        {" "}
+                                        {this.state.store.wifi > 0 && (
+                                            <span>
+                                                <Icon type="wifi" />
+                                                Store has Wifi
+                                            </span>
+                                        )}
+                                        {!this.state.store.wifi > 0 && (
+                                            <span>
+                                                <Icon
+                                                    type="wifi"
+                                                    style={{
+                                                        color: "#F81D22"
+                                                    }}
+                                                />
+                                                /> Store does not have Wifi
+                                            </span>
+                                        )}
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col span={12} className="infoColumns">
+                                        {" "}
+                                        {this.state.store.card_payment > 0 && (
+                                            <span>
+                                                <Icon
+                                                    type="credit-card"
+                                                    theme="twoTone"
+                                                />
+                                                Store has Card Payment
+                                            </span>
+                                        )}
+                                        {!this.state.store.card_payment > 0 && (
+                                            <span>
+                                                <Icon
+                                                    type="credit-card"
+                                                    theme="filled"
+                                                    style={{
+                                                        fontSize: "50px",
+                                                        color: "#F81D22"
+                                                    }}
+                                                />
+                                                Store does not have Card Payment
+                                            </span>
+                                        )}
+                                    </Col>
+                                    {/* <Col span={12} className="infoColumns" /> */}
+                                </Row>
+                            </div>
+                        </Card>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col lg={14} offset={6}>
+                        <Products products={this.state.products} />
+                    </Col>
+                </Row>
+                
             {this.state.faqs.map(element => (
                             <div style={{ paddingTop: "10px" }}>
                                 <Card
@@ -260,13 +340,10 @@ class Store extends Component {
                                     <p>{element.answer}</p>
                                 </Card>
                             </div>
-                        ))}
-
-          </Col>
-        </Row>
-      </div>
-    );
-  }
+                        ))} 
+            </div>
+        );
+    }
 }
 
 export default Store;
