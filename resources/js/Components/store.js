@@ -10,6 +10,8 @@ import {
   Avatar,
   Rate
 } from "antd";
+import axios from "axios";
+
 
 import cimage from "../Images/img1.jpg";
 import pimage from "../Images/pimg.png";
@@ -40,6 +42,8 @@ class Store extends Component {
         price: "250$"
       }
     ],
+    store:{},
+    faqs:[],
     Reviews: [
       {
         title: `ant design part`,
@@ -88,6 +92,14 @@ class Store extends Component {
       }
     ]
   };
+  componentDidMount (){
+    console.log(this.props.match.params);
+    axios.get("/faqs/shop/"+this.props.match.params.id).then(res => {
+      const storedata = res.data;
+      console.log(storedata);
+      this.setState({ faqs: storedata });
+  });
+  }
   render() {
     return (
       <div>
@@ -215,6 +227,45 @@ class Store extends Component {
                 )}
               />
             </Card>
+
+            {this.state.faqs.map(element => (
+                            <div style={{ paddingTop: "10px" }}>
+                                <Card
+                                    title={element.question}
+                                    // key={element.id}
+                                    type="inner"
+                                    hoverable="true"
+                                    bordered={false}
+                                    // style={{ width: 1200 }}
+                                    extra={
+                                        <div>
+                                            <Button
+                                                // type="primary"
+                                                size={"large"}
+                                                icon="edit"
+                                                onClick={() =>
+                                                    this.showModalm2(element)
+                                                }
+                                            />{" "}
+                                            <Button
+                                                type="danger"
+                                                size={"large"}
+                                                icon="delete"
+                                                onClick={event =>
+                                                    this.handleDelete(
+                                                        event,
+                                                        element.id
+                                                    )
+                                                }
+                                            />{" "}
+                                        </div>
+                                    }
+                                >
+                                    <p>{element.answer}</p>
+                                </Card>
+                            </div>
+                        ))}
+
           </Col>
         </Row>
       </div>
