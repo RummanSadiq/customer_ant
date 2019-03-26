@@ -137,6 +137,7 @@ Axios.get('/api/allproducts').then(res => {
                                                     src={element.display_picture}
                                                 />
                                             }
+                                            style={{ width: 240 }}
                                         >
                                             <Meta
                                                 title={element.name}
@@ -187,6 +188,7 @@ Axios.get('/api/allproducts').then(res => {
                                                     src={store}
                                                 />
                                             }
+                                            style={{ width: 188, height: 290 }}
                                         >
                                             <Meta
                                                 title={element.name}

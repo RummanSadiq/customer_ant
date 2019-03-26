@@ -99,6 +99,11 @@ class Store extends Component {
       console.log(storedata);
       this.setState({ faqs: storedata });
   });
+//   axios.get("/api/reviews").then(res => {
+//     const reviewsData = res.data;
+//     console.log(reviewsData);
+//     this.setState({ reviews: reviewsData });
+// });
   }
   render() {
     return (
@@ -196,19 +201,10 @@ class Store extends Component {
                   pageSize: 3
                 }}
                 dataSource={this.state.Reviews}
-                // footer={
-                //   <div>
-                //     <b>ant design</b> footer part
-                //   </div>
-                // }
+           
                 renderItem={item => (
                   <List.Item
                     key={item.title}
-                    // actions={[
-                    //   <IconText type="star-o" text="156" />,
-                    //   <IconText type="like-o" text="156" />,
-                    //   <IconText type="message" text="2" />
-                    // ]}
                     extra={
                       <img
                         width={272}
