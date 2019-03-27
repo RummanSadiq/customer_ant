@@ -13,7 +13,7 @@ import {
 } from "antd";
 import Products from "./LimitedProducts";
 import axios from "axios";
-
+import FAQs from './LimitedFaqs';
 import cimage from "../Images/img1.jpg";
 import pimage from "../Images/pimg.png";
 
@@ -23,26 +23,7 @@ const { Meta } = Card;
 const { Header, Content, Footer } = Layout;
 class Store extends Component {
     state = {
-        products: [
-            // { picture: "", name: "Product name here", price: "250$" },
-            // {
-            //   picture: "",
-            //   name: "Product name here",
-            //   price: "250$"
-            // },
-            // { picture: "", name: "Product name here", price: "250$" },
-            // {
-            //   picture: "",
-            //   name: "Product name here",
-            //   price: "250$"
-            // },
-            // { picture: "", name: "Product name here", price: "250$" },
-            // {
-            //   picture: "",
-            //   name: "Product name here",
-            //   price: "250$"
-            // }
-        ],
+        products: [],
         store: {},
         faqs: [],
         Reviews: [
@@ -108,6 +89,8 @@ class Store extends Component {
                 console.log(productsData);
                 this.setState({ products: productsData });
             });
+
+         
     }
     render() {
         return (
@@ -303,44 +286,13 @@ class Store extends Component {
                         <Products products={this.state.products} />
                     </Col>
                 </Row>
+                <Row>
+                    <Col lg={14} offset={6}>
+                        <FAQs id={this.props.match.params.id}/>
+                    </Col>
+                </Row>
                 
-            {this.state.faqs.map(element => (
-                            <div style={{ paddingTop: "10px" }}>
-                                <Card
-                                    title={element.question}
-                                    // key={element.id}
-                                    type="inner"
-                                    hoverable="true"
-                                    bordered={false}
-                                    // style={{ width: 1200 }}
-                                    extra={
-                                        <div>
-                                            <Button
-                                                // type="primary"
-                                                size={"large"}
-                                                icon="edit"
-                                                onClick={() =>
-                                                    this.showModalm2(element)
-                                                }
-                                            />{" "}
-                                            <Button
-                                                type="danger"
-                                                size={"large"}
-                                                icon="delete"
-                                                onClick={event =>
-                                                    this.handleDelete(
-                                                        event,
-                                                        element.id
-                                                    )
-                                                }
-                                            />{" "}
-                                        </div>
-                                    }
-                                >
-                                    <p>{element.answer}</p>
-                                </Card>
-                            </div>
-                        ))} 
+           
             </div>
         );
     }

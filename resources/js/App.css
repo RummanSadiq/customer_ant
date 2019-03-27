@@ -31,3 +31,13 @@
     transform: rotate(360deg);
   }
 }
+
+.infoColumns{
+  
+  border: 1px solid;
+  padding: 1%;
+}
+
+span{
+padding: 1%;
+}
