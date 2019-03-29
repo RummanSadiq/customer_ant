@@ -35,7 +35,6 @@ Route::get('/categories/{parent}', 'Api\CategoryController@show');
 //Posts
 Route::get('/posts', 'Api\PostController@index');
 Route::get('/posts/shop/{id}', 'Api\PostController@getShopPosts');
-
 Route::post('/posts', 'Api\PostController@store');
 Route::post('/product_post', 'Api\PostController@productPost');
 Route::post('/posts/{id}', 'Api\PostController@update');
@@ -85,3 +84,4 @@ Route::post('/attachment/{type}', function(Request $request, $type)
             ]);
     }
 );
+

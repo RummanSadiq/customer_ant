@@ -17,9 +17,8 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        // $user = User::find(2);
-        $reviews = $user->reviews;
+        
+        $reviews = Review::all();
 
         foreach($reviews as $rev) {
             $rev["key"] = $rev->id;

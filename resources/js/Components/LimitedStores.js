@@ -59,7 +59,7 @@ class Stores extends Component {
                                     cover={
                                         <img
                                             alt="example"
-                                            src={store}
+                                            src={element.display_picture}
                                         />
                                     }
                                     style={{ width: 240 }}
