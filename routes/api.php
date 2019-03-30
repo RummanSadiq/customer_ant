@@ -42,7 +42,7 @@ Route::delete('/posts/{id}', 'Api\PostController@destroy');
 // Route::get('/myposts', 'Api\PostController@show');
 
 //Products
-Route::get('/allproducts', 'Api\ProductController@index');
+Route::get('/products', 'Api\ProductController@index');
 Route::get('/products/shop/{id}', 'Api\ProductController@getShopProducts');
 Route::get('/products/{id}', 'Api\ProductController@show');
 

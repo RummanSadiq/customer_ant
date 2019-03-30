@@ -20,6 +20,12 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
+
+        foreach($products as $prod) {
+            $prod['store_name'] = Store::find($prod->store_id)->name;
+            $prod['store_picture'] = Store::find($prod->store_id)->display_picture;
+            $prod['category_name'] = Category::find($prod->category_id)->name;
+        }
         return response()->json($products);
     }
 

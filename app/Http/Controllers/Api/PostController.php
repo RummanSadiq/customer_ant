@@ -20,6 +20,13 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
+
+        foreach($posts as $post) {
+            $post['store_name'] = Store::find($post->store_id)->name;
+            $post['store_picture'] = Store::find($post->store_id)->display_picture;
+
+        }
+
         return response()->json($posts);
     }
     

@@ -14,7 +14,7 @@ class HomePage extends Component {
         done: false
     };
     componentDidMount() {
-        Axios.get("/api/allproducts").then(res => {
+        Axios.get("/api/products").then(res => {
             const products = res.data;
             this.setState({ products: products });
             //     , ()=>{

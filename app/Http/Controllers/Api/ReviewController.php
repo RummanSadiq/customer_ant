@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Review;
 use App\User;
+use App\Store;
+
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +26,8 @@ class ReviewController extends Controller
         foreach($reviews as $rev) {
             $rev["key"] = $rev->id;
             $rev['username'] = User::find($rev->user_id)->name;
+            $rev['store_name'] = Store::find($rev->store_id)->name;
+            $rev['store_picture'] = Store::find($rev->store_id)->display_picture;
         }
         return response()->json($reviews);
     }
