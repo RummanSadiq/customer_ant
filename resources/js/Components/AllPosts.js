@@ -1,14 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Row, Col, Card, Button, Carousel, List, Avatar, Icon } from "antd";
+import { Row, Col, Card, Button,  List, Avatar, Icon } from "antd";
 
-const { Meta } = Card;
-const IconText = ({ type, text }) => (
-    <span>
-        <Icon type={type} style={{ marginRight: 8 }} />
-        {text}
-    </span>
-);
 class AllPosts extends Component {
     state = {
         posts: []
