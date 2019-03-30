@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, Card, Button, Carousel, List, Tabs, Icon } from "antd";
 import Products from "./LimitedProducts";
+import AllPosts from './AllPosts';
 import Stores from "./LimitedStores";
 import cimage from "../Images/img1.jpg";
 import pimage from "../Images/pimg.png";
@@ -89,7 +90,8 @@ class HomePage extends Component {
                         <TabPane tab="Explore" key="2">
                             <Row>
                                 <Col lg={14} offset={4} >
-                                
+                                ALL POSTS BY ALL STORES
+                                <AllPosts></AllPosts>
                                 </Col>
                             </Row>
                         </TabPane>
