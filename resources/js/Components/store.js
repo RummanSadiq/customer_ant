@@ -14,6 +14,7 @@ import {
 import Products from "./LimitedProducts";
 import axios from "axios";
 import FAQs from './LimitedFaqs';
+import StorePosts from './StorePosts';
 import cimage from "../Images/img1.jpg";
 import pimage from "../Images/pimg.png";
 
@@ -26,6 +27,7 @@ class Store extends Component {
         products: [],
         store: {},
         faqs: [],
+        posts:[],
         Reviews: [
             {
                 title: `ant design part`,
@@ -89,7 +91,7 @@ class Store extends Component {
                 console.log(productsData);
                 this.setState({ products: productsData });
             });
-
+        
          
     }
     render() {
@@ -292,7 +294,11 @@ class Store extends Component {
                     </Col>
                 </Row>
                 
-           
+                <Row>
+                    <Col lg={14} offset={6}>
+                        <StorePosts id={this.props.match.params.id}/>
+                    </Col>
+                </Row>
             </div>
         );
     }

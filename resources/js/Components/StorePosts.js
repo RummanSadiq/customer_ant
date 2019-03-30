@@ -2,20 +2,21 @@ import React, { Component } from "react";
 import { Row, Col, Card, Button, Carousel, List, Tabs, Icon } from "antd";
 import axios from "axios";
 
+const { Meta } = Card;
 
-class FAQs extends Component {
+class StorePosts extends Component {
     constructor(props) {
         super(props);
     }
     state = {
-        faqs: []
+        posts: []
     };
 
     componentDidMount() {
-        axios.get("/api/faqs/shop/" + this.props.id).then(res => {
-            const faqsData = res.data;
-            console.log(faqsData);
-            this.setState({ faqs: faqsData });
+        axios.get("/api/posts/shop/" + this.props.id).then(res => {
+            const postsData = res.data;
+            console.log("Posts of this store are", postsData);
+            this.setState({ posts: postsData });
         });
     }
     render() {
@@ -35,17 +36,30 @@ class FAQs extends Component {
                         },
                         pageSize: 6
                     }}
-                    dataSource={this.state.faqs}
+                    dataSource={this.state.posts}
                     renderItem={element => (
                         <List.Item>
                             <Card
-                                title={element.question}
-                                // key={element.id}
+                                title={<h3> Store Activity </h3>}
                                 type="inner"
                                 hoverable="true"
                                 bordered={false}
+                                style={{ width: 1000 }}
+                                headStyle={{ textAlign: "center" }}
                             >
-                                <p>{element.answer}</p>
+                                <Card
+                                    hoverable={true}
+                                    bordered={false}
+                                    cover={
+                                        <img
+                                            alt="postimage"
+                                            src={element.image_path}
+                                        />
+                                    }
+                                >
+                                    {element.description}
+                                    <Meta description={element.created_at} />
+                                </Card>
                             </Card>
                         </List.Item>
                     )}
@@ -55,4 +69,4 @@ class FAQs extends Component {
     }
 }
 
-export default FAQs;
+export default StorePosts;
