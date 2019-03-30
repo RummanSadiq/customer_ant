@@ -17,7 +17,7 @@ class AllPosts extends Component {
     componentDidMount() {
         axios.get("/api/posts").then(res => {
             const postsData = res.data;
-            console.log("Posts of are", postsData);
+            console.log("Posts of stores are", postsData);
             this.setState({ posts: postsData });
         });
     }
