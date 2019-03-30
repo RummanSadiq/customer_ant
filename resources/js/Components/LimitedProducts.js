@@ -52,10 +52,11 @@ class Products extends Component {
                                         <img
                                             alt="product picture"
                                             src={element.display_picture}
-                                            style={{ width: 188, height: 188 }}
                                         />
                                     }
-                                    style={{ width: 188, height: 290, padding: '5%' }}
+                                    style={{ width: 240 }}
+
+                                    // style={{ width: 188, height: 290, padding: '5%' }}
                                 >
                                     <Meta
                                         title={element.name}

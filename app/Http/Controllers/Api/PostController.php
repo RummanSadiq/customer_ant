@@ -19,12 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        // $user = User::find(1);
-
-        $store = $user->store;
-        // $posts = $store->posts->sortByDesc('created_at');
-        $posts = $store->posts->reverse()->values();
+        $posts = Post::all();
         return response()->json($posts);
     }
     
