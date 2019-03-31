@@ -81,7 +81,7 @@ class HomePage extends Component {
                     >
                         <TabPane tab="Browse" key="1">
                             <Row>
-                                <Col lg={14} offset={4}>
+                                <Col lg={14} offset={6}>
                                     <Stores />
                                     <Products products={this.state.products} />
                                 </Col>
@@ -89,8 +89,7 @@ class HomePage extends Component {
                         </TabPane>
                         <TabPane tab="Explore" key="2">
                             <Row>
-                                <Col lg={14} offset={4} >
-                                ALL POSTS BY ALL STORES
+                                <Col lg={14} offset={6} >
                                 <AllPosts></AllPosts>
                                 </Col>
                             </Row>

@@ -15,6 +15,8 @@ import Products from "./LimitedProducts";
 import axios from "axios";
 import FAQs from './LimitedFaqs';
 import StorePosts from './StorePosts';
+import Reviews from './Reviews';
+
 import cimage from "../Images/img1.jpg";
 import pimage from "../Images/pimg.png";
 
@@ -297,6 +299,12 @@ class Store extends Component {
                 <Row>
                     <Col lg={14} offset={6}>
                         <StorePosts id={this.props.match.params.id}/>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col lg={14} offset={6}>
+                        <Reviews id={this.props.match.params.id}/>
                     </Col>
                 </Row>
             </div>

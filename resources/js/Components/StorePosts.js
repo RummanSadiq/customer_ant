@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col, Card, Button, Carousel, List, Tabs, Icon } from "antd";
 import axios from "axios";
-
 const { Meta } = Card;
 
 class StorePosts extends Component {
@@ -22,7 +21,7 @@ class StorePosts extends Component {
     render() {
         return (
             <Card
-                title={<h2>FAQs</h2>}
+                title={<h2>Store Activity</h2>}
                 extra={<Button icon="plus">All</Button>}
                 bordered={false}
                 style={{ background: "#ECECEC" }}

@@ -64,10 +64,18 @@ class Stores extends Component {
                                     }
                                     style={{ width: 240 }}
                                 >
+                                
                                     <Meta
                                         title={element.name}
                                         description={element.contact}
                                     />
+                                     <List.Item.Meta
+                                    // avatar={
+                                    //     <Avatar src={element.store_picture} />
+                                    // }
+                                    // title={<a href="">{element.store_type_id}</a>}
+                                    description={element.store_type_id}
+                                />
                                 </Card>
                             </NavLink>
                         </List.Item>
