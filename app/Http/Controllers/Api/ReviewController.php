@@ -32,15 +32,18 @@ class ReviewController extends Controller
         return response()->json($reviews);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function shopReviews($id)
     {
-        //
-    }
+        $store = Store::find($id);
+        $reviews = $store->reviews;
+
+        foreach($reviews as $rev) {
+            $rev["key"] = $rev->id;
+            $rev['username'] = User::find($rev->user_id)->name;
+            $rev['store_name'] = Store::find($rev->store_id)->name;
+            $rev['store_picture'] = Store::find($rev->store_id)->display_picture;
+        }
+        return response()->json($reviews);    }
 
     /**
      * Store a newly created resource in storage.
