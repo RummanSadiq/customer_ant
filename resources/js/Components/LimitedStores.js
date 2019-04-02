@@ -74,7 +74,10 @@ class Stores extends Component {
                                     //     <Avatar src={element.store_picture} />
                                     // }
                                     // title={<a href="">{element.store_type_id}</a>}
-                                    description={element.store_type_id}
+                                    description={
+                                        <Button icon='add'  block style={{ backgroundColor: "#F57224", color:'white' }}>Follow</Button>
+
+                                    }
                                 />
                                 </Card>
                             </NavLink>

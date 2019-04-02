@@ -127,9 +127,11 @@ class Head extends Component {
                                         <Button
                                             className="search-btn"
                                             size="large"
-                                            type="primary"
+                                            icon="search"
+                                            style={{backgroundColor: "#F57224", color:'white'}}
                                         >
-                                            <Icon type="search" />
+                                            {/* <Icon type="search" /> */}
+                                            Search
                                         </Button>
                                     }
                                 />

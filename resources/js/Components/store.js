@@ -17,13 +17,10 @@ import FAQs from './LimitedFaqs';
 import StorePosts from './StorePosts';
 import Reviews from './Reviews';
 
-import cimage from "../Images/img1.jpg";
-import pimage from "../Images/pimg.png";
 
 import "../css/sbar.css";
 import MenuItem from "antd/lib/menu/MenuItem";
 const { Meta } = Card;
-const { Header, Content, Footer } = Layout;
 class Store extends Component {
     state = {
         products: [],
@@ -157,18 +154,18 @@ class Store extends Component {
                             extra={
                                 <div>
                                     <Button
-                                        type="primary"
                                         icon="plus"
                                         size="large"
                                         shape="round"
+                                        style={{ backgroundColor: "#F57224", color:'white' }}
                                     >
                                         Follow
                                     </Button>
                                     <Button
-                                        type="primary"
                                         icon="message"
                                         size="large"
                                         shape="round"
+                                        style={{ backgroundColor: "#F57224", color:'white' }}
                                     >
                                         Message
                                     </Button>
