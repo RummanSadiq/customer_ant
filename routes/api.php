@@ -17,6 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 //Shop
 Route::get('/shops', 'Api\StoreController@index');
 Route::get('/shops/{id}', 'Api\StoreController@show');
@@ -72,17 +73,17 @@ Route::delete('/messages/{id}', 'Api\MessageController@destroy'); //Delete chat 
 
 
 //Image Attachments 
-Route::post('/attachment/{type}', function(Request $request, $type) 
-    {
+Route::post(
+    '/attachment/{type}',
+    function (Request $request, $type) {
         $image = $request->file('image');
         $input['imagename'] = time() . '.' . $image->getClientOriginalExtension();
         $destinationPath = public_path('images/' . $type);
         $image->move($destinationPath, $input['imagename']);
 
         return response()->json([
-            'status'=> 'done',
-            'url'=> '../images/'. $type  .'/'. $input['imagename']
-            ]);
+            'status' => 'done',
+            'url' => '../images/' . $type  . '/' . $input['imagename']
+        ]);
     }
 );
-
