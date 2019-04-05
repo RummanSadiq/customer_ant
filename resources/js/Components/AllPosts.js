@@ -44,11 +44,10 @@ class AllPosts extends Component {
                             style={{ textAlign: "left" }}
                         >
                             <List.Item.Meta
-                                avatar={<Avatar src={""} />}
+                                avatar={<Avatar src={element.store_picture} />}
                                 title={
                                     <a href="">
-                                        Store Name will be here
-                                        {element.store_id.title}
+                                        {element.store_name}
                                     </a>
                                 }
                                 description={element.created_at}

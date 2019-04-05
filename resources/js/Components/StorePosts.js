@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Row, Col, Card, Button, Carousel, List, Tabs, Icon } from "antd";
+import { Row, Col, Card, Button, Carousel, List, Tabs, Icon, Avatar } from "antd";
 import axios from "axios";
-
 const { Meta } = Card;
 
 class StorePosts extends Component {
@@ -22,7 +21,7 @@ class StorePosts extends Component {
     render() {
         return (
             <Card
-                title={<h2>FAQs</h2>}
+                title={<h2>Store Activity</h2>}
                 extra={<Button icon="plus">All</Button>}
                 bordered={false}
                 style={{ background: "#ECECEC" }}
@@ -37,30 +36,43 @@ class StorePosts extends Component {
                         pageSize: 6
                     }}
                     dataSource={this.state.posts}
+                    style={{ background: "white" }}
                     renderItem={element => (
-                        <List.Item>
-                            <Card
-                                title={<h3> Store Activity </h3>}
-                                type="inner"
-                                hoverable="true"
-                                bordered={false}
-                                style={{ width: 1000 }}
-                                headStyle={{ textAlign: "center" }}
-                            >
-                                <Card
-                                    hoverable={true}
-                                    bordered={false}
-                                    cover={
-                                        <img
-                                            alt="postimage"
-                                            src={element.image_path}
-                                        />
-                                    }
-                                >
-                                    {element.description}
-                                    <Meta description={element.created_at} />
-                                </Card>
-                            </Card>
+                        // <List.Item>
+                        //     <Card
+                        //         hoverable={true}
+                        //         bordered={false}
+                        //         cover={element.description}
+                        //     >
+                        // <img
+                        //     alt="postimage"
+                        //     src={element.image_path}
+                        //     width="900"
+                        // />
+                        //         <Meta description={element.created_at} />
+                        //     </Card>
+                        // </List.Item>
+                        <List.Item
+                            key={element.id}
+                            // actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
+                            extra={
+                                <img
+                                    width={272}
+                                    height={200}
+                                    alt="logo"
+                                    src={element.image_path}
+                                />
+                            }
+                        >
+                            <List.Item.Meta
+                                  avatar={<Avatar src={element.image_path} />}
+                                title={
+                                    <a href="">Store Name{element.store_id}</a>
+                                }
+                                description={element.created_at}
+                            />
+
+                           {element.description}
                         </List.Item>
                     )}
                 />

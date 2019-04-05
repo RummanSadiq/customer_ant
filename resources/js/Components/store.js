@@ -15,13 +15,12 @@ import Products from "./LimitedProducts";
 import axios from "axios";
 import FAQs from './LimitedFaqs';
 import StorePosts from './StorePosts';
-import cimage from "../Images/img1.jpg";
-import pimage from "../Images/pimg.png";
+import Reviews from './Reviews';
+
 
 import "../css/sbar.css";
 import MenuItem from "antd/lib/menu/MenuItem";
 const { Meta } = Card;
-const { Header, Content, Footer } = Layout;
 class Store extends Component {
     state = {
         products: [],
@@ -155,18 +154,18 @@ class Store extends Component {
                             extra={
                                 <div>
                                     <Button
-                                        type="primary"
                                         icon="plus"
                                         size="large"
                                         shape="round"
+                                        style={{ backgroundColor: "#F57224", color:'white' }}
                                     >
                                         Follow
                                     </Button>
                                     <Button
-                                        type="primary"
                                         icon="message"
                                         size="large"
                                         shape="round"
+                                        style={{ backgroundColor: "#F57224", color:'white' }}
                                     >
                                         Message
                                     </Button>
@@ -297,6 +296,12 @@ class Store extends Component {
                 <Row>
                     <Col lg={14} offset={6}>
                         <StorePosts id={this.props.match.params.id}/>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col lg={14} offset={6}>
+                        <Reviews id={this.props.match.params.id}/>
                     </Col>
                 </Row>
             </div>

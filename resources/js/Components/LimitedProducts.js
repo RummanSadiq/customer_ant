@@ -5,7 +5,6 @@ const { Meta } = Card;
 class Products extends Component {
     constructor(props) {
         super(props);
-        // this.setState({products : this.props});
         this.state.products = this.props.products;
     }
     state = {
@@ -14,7 +13,6 @@ class Products extends Component {
 
     componentDidMount() {
         console.log("received props are", this.state.products);
-        // this.setState({products : this.props});
     }
     render() {
         return (
@@ -60,11 +58,32 @@ class Products extends Component {
                                     padding: "5%"
                                 }}
                             >
+                                {" "}
                                 <Meta
                                     title={element.name}
+                                    description={element.category}
+                                />{" "}
+                                <List.Item.Meta
+                                    // avatar={
+                                    //     <Avatar src={element.store_picture} />
+                                    // }
+                                    title={<a href="">{element.store_name}</a>}
                                     description={
-                                        <div style={{ color: "#F57224" }}>
-                                            Rs.{element.price}
+                                        <div>
+                                            <h3 style={{ color: "#F57224" }}>
+                                                Rs.{element.price}
+                                            </h3>
+
+                                            <Button
+                                                icon="shopping-cart"
+                                                block
+                                                style={{
+                                                    backgroundColor: "#F57224",
+                                                    color: "white"
+                                                }}
+                                            >
+                                                Add to List
+                                            </Button>
                                         </div>
                                     }
                                 />
