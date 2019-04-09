@@ -17,10 +17,8 @@ class HomePage extends Component {
     componentDidMount() {
         Axios.get("/api/products").then(res => {
             const products = res.data;
+            console.log('products data is',products);
             this.setState({ products: products });
-            //     , ()=>{
-            //     this.setState({done:!this.state.done});
-            //   });
         });
     }
     render() {
@@ -90,7 +88,7 @@ class HomePage extends Component {
                         <TabPane tab="Explore" key="2">
                             <Row>
                                 <Col lg={14} offset={6} >
-                                <AllPosts></AllPosts>
+                                <AllPosts/>
                                 </Col>
                             </Row>
                         </TabPane>

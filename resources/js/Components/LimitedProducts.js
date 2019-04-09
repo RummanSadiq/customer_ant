@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col, Card, Button, Carousel, List, Avatar, Icon } from "antd";
+import { NavLink } from "react-router-dom";
 
 const { Meta } = Card;
 class Products extends Component {
@@ -12,7 +13,7 @@ class Products extends Component {
     };
 
     componentDidMount() {
-        console.log("received props are", this.state.products);
+        console.log("received props are", this.props.products);
     }
     render() {
         return (
@@ -67,7 +68,11 @@ class Products extends Component {
                                     // avatar={
                                     //     <Avatar src={element.store_picture} />
                                     // }
-                                    title={<a href="">{element.store_name}</a>}
+                                    title={
+                                        <NavLink to={"store/" + element.store_id}>
+                                            {element.store_name}
+                                        </NavLink>
+                                    }
                                     description={
                                         <div>
                                             <h3 style={{ color: "#F57224" }}>
