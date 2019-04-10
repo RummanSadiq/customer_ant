@@ -20,8 +20,8 @@ class StoreFollowerController extends Controller
     public function index()
     {
 
-        // $user = Auth::User();
-        $user = User::find(1);
+        $user = Auth::User();
+        // $user = User::find(1);
 
         $stores = StoreFollower::where("user_id", $user->id)->get()->values();
 
@@ -67,8 +67,8 @@ class StoreFollowerController extends Controller
     public function follow($id)
     {
 
-        // $user = Auth::User();
-        $user = User::find(1);
+        $user = Auth::User();
+        // $user = User::find(1);
         $con = [
             "user_id" => $user->id,
             "store_id" => $id
