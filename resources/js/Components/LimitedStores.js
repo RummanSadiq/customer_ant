@@ -1,9 +1,18 @@
 import React, { Component } from "react";
-import { Row, Col, Card, Button, Carousel, List, Tabs, Icon } from "antd";
+import {
+    Row,
+    Col,
+    Card,
+    Button,
+    Carousel,
+    List,
+    Tabs,
+    Icon,
+    message
+} from "antd";
 import { NavLink } from "react-router-dom";
 import Axios from "axios";
 import store from "../Images/store.jpg";
-
 
 const { Meta } = Card;
 class Stores extends Component {
@@ -11,15 +20,52 @@ class Stores extends Component {
         super(props);
     }
     state = {
-        shops: []
+        shops: [],
+        followed: []
     };
 
     componentDidMount() {
+        this.getStores();
+        this.getFollowed();
+    }
+    getStores() {
         Axios.get("/api/shops").then(res => {
             const shops = res.data;
-            console.log('Shops are', shops);
+            console.log("Shops are", shops);
             this.setState({ shops: shops });
         });
+    }
+    getFollowed() {
+        Axios.get("/api/followed").then(res => {
+            const followedData = res.data;
+            console.log("followed data is", followedData);
+            this.setState({ followed: followedData });
+        });
+    }
+
+    handleFollow(id) {
+        Axios.get("/api/follow/" + id)
+            .then(res => {
+                message.success("following store");
+                this.getFollowed();
+                this.getStores();
+            })
+            .catch(err => {
+                console.log(
+                    "Error occured, cannot make api call to follow store",
+                    err
+                );
+            });
+    }
+
+    checkFollow(id) {
+        const result = this.state.followed.find(
+            element => element.store_id === id
+        );
+        if (result) {
+            console.log("result is", result);
+            return true;
+        } else return false;
     }
     render() {
         return (
@@ -48,39 +94,53 @@ class Stores extends Component {
                     }}
                     dataSource={this.state.shops}
                     renderItem={element => (
-                        <List.Item
-                        //     <NavLink to="/store">
-
-                        // </NavLink>
-                        >
-                            <NavLink to={"store/" + element.id}>
-                                <Card
-                                    hoverable
-                                    cover={
+                        <List.Item>
+                            <Card
+                                hoverable
+                                cover={
+                                    <NavLink to={"store/" + element.id}>
                                         <img
                                             alt="example"
                                             src={element.display_picture}
                                         />
-                                    }
-                                    style={{ width: 240 }}
-                                >
-                                
-                                    <Meta
-                                        title={element.name}
-                                        description={element.contact}
-                                    />
-                                     <List.Item.Meta
+                                    </NavLink>
+                                }
+                                style={{ width: 240 }}
+                            >
+                                <Meta
+                                    title={element.name}
+                                    description={element.contact}
+                                />
+                                <List.Item.Meta
                                     // avatar={
                                     //     <Avatar src={element.store_picture} />
                                     // }
                                     // title={<a href="">{element.store_type_id}</a>}
                                     description={
-                                        <Button icon='add'  block style={{ backgroundColor: "#F57224", color:'white' }}>Follow</Button>
-
+                                        <div>
+                                            <Button
+                                                icon="add"
+                                                block
+                                                style={{
+                                                    backgroundColor: "#F57224",
+                                                    color: "white"
+                                                }}
+                                                onClick={() =>
+                                                    this.handleFollow(
+                                                        element.id
+                                                    )
+                                                }
+                                            >
+                                                {this.checkFollow(element.id) &&
+                                                    "Following"}
+                                                {!this.checkFollow(
+                                                    element.id
+                                                ) && "Follow"}
+                                            </Button>
+                                        </div>
                                     }
                                 />
-                                </Card>
-                            </NavLink>
+                            </Card>
                         </List.Item>
                     )}
                 />

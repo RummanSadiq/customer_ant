@@ -9,7 +9,8 @@ import {
     List,
     Avatar,
     Rate,
-    Icon
+    Icon,
+    message
 } from "antd";
 import Products from "./LimitedProducts";
 import axios from "axios";
@@ -22,28 +23,78 @@ import "../css/sbar.css";
 import MenuItem from "antd/lib/menu/MenuItem";
 const { Meta } = Card;
 class Store extends Component {
+    constructor(props) {
+        super(props);
+        this.state.id = this.props.match.params.id;
+    }
     state = {
         products: [],
         store: {},
         faqs: [],
         posts: [],
-        Reviews: []
+        Reviews: [],
+        followed: [],
+        id: 1
     };
     componentDidMount() {
-        console.log('params received in props',this.props.match.params);
-        axios.get("/api/shops/" + this.props.match.params.id).then(res => {
+        console.log("params received in props", this.state.id);
+        axios.get("/api/shops/" + this.state.id).then(res => {
             const storedata = res.data;
             console.log(storedata);
             this.setState({ store: storedata });
         });
 
-        axios
-            .get("/api/products/shop/" + this.props.match.params.id)
-            .then(res => {
-                const productsData = res.data;
-                console.log(productsData);
-                this.setState({ products: productsData });
+        axios.get("/api/products/shop/" + this.state.id).then(res => {
+            const productsData = res.data;
+            console.log(productsData);
+            this.setState({ products: productsData });
+        });
+
+        this.getFollowed();
+    }
+    getFollowed() {
+        axios.get("/api/followed").then(res => {
+            const followedData = res.data;
+            console.log("followed data is", followedData);
+            this.setState({ followed: followedData }, () => {
+                console.log("followed data is", this.state.followed);
+
+                this.checkFollow();
             });
+        });
+    }
+
+    handleFollow(id) {
+        console.log("handle follow", id);
+        axios
+            .get("/api/follow/" + id)
+            .then(res => {
+                this.getFollowed();
+            })
+            .catch(err => {
+                console.log(
+                    "Error occured, cannot make api call to follow store",
+                    err
+                );
+            });
+    }
+
+    checkFollow() {
+        console.log("I am inside check follow");
+        const result = this.state.followed.find(
+            element => element.store_id == this.state.id
+        );
+        console.log("result out is", result);
+
+        if (result) {
+            console.log("result is", result);
+            // return true;
+            this.setState({ f: true });
+        } else {
+            console.log("nope!", result);
+            // return false;
+            this.setState({ f: false });
+        }
     }
     render() {
         return (
@@ -105,17 +156,39 @@ class Store extends Component {
                             bordered={false}
                             extra={
                                 <div>
-                                    <Button
-                                        icon="plus"
-                                        size="large"
-                                        shape="round"
-                                        style={{
-                                            backgroundColor: "#F57224",
-                                            color: "white"
-                                        }}
-                                    >
-                                        Follow
-                                    </Button>
+                                    {this.state.f && (
+                                        <Button
+                                            icon="check"
+                                            size="large"
+                                            shape="round"
+                                            style={{
+                                                backgroundColor: "#F57224",
+                                                color: "white"
+                                            }}
+                                            onClick={() =>
+                                                this.handleFollow(this.state.id)
+                                            }
+                                        >
+                                            Following
+                                        </Button>
+                                    )}
+                                    {!this.state.f && (
+                                        <Button
+                                            icon="plus"
+                                            size="large"
+                                            shape="round"
+                                            style={{
+                                                backgroundColor: "#F57224",
+                                                color: "white"
+                                            }}
+                                            onClick={() =>
+                                                this.handleFollow(this.state.id)
+                                            }
+                                        >
+                                            Follow
+                                        </Button>
+                                    )}
+
                                     <Button
                                         icon="message"
                                         size="large"
@@ -135,13 +208,11 @@ class Store extends Component {
                                     </div>
                                 </div>
                             }
-                        >
-                        </Card>
+                        />
                     </Col>
-                    {this.state.store &&
+                    {/* {this.state.store &&
                     <StoreDetails details={this.state.store} />
-                    }
-
+                    } */}
                 </Row>
                 <Row>
                     <Col lg={14} offset={6}>

@@ -46,10 +46,12 @@ class Products extends Component {
                             <Card
                                 hoverable
                                 cover={
+                                    <NavLink to={"product/" + element.id}>
                                     <img
-                                        alt="product picture"
+                                        alt="example"
                                         src={element.display_picture}
                                     />
+                                </NavLink>
                                 }
                                 // style={{ width: 240 }}
 

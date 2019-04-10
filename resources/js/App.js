@@ -6,6 +6,7 @@ import "antd/dist/antd.css";
 import "antd/dist/antd";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import SubPage from './Components/subPage';
+import ProductDetails from './Components/ProductDetails';
 
 class App extends Component {
     render() {
@@ -13,6 +14,7 @@ class App extends Component {
             <div style={{ backgroundColor: "#F5F5F5" }}>
                 <Head />
                 <SubPage/>
+                {/* <ProductDetails/> */}
             </div>
         );
     }

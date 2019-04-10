@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import HomePage from "./HomePage";
 import Store from './store';
 import { BrowserRouter, Route } from "react-router-dom";
+import ProductDetails from './ProductDetails';
 
 
 class SubPage extends Component {
@@ -12,6 +13,7 @@ class SubPage extends Component {
             <div>
                 <Route path="/store/:id" component={Store}/>
                 <Route exact path="/" component={HomePage}/>
+                <Route exact path='/product/:id' component={ProductDetails}/>
             </div>
                 
             </BrowserRouter>
