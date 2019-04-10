@@ -30,6 +30,13 @@ Route::get('/myshop', 'Api\StoreController@myShop');
 //Store Types
 Route::get('/storetypes', 'Api\StoreTypeController@index');
 
+
+
+//Store Followers
+Route::get('/follow/{id}', 'Api\StoreFollowerController@follow');
+Route::get('/followed', 'Api\StoreFollowerController@index');
+
+
 //Categories
 Route::get('/categories/{parent}', 'Api\CategoryController@show');
 
