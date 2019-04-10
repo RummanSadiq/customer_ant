@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\StoreFollower;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\Auth;
+use App\Store;
 
 class StoreFollowerController extends Controller
 {
@@ -15,7 +19,13 @@ class StoreFollowerController extends Controller
      */
     public function index()
     {
-        //
+
+        $user = Auth::User();
+        // $user = User::find(1);
+
+        $stores = StoreFollower::where("user_id", $user->id)->get()->values();
+
+        return response()->json($stores);
     }
 
     /**
@@ -46,9 +56,7 @@ class StoreFollowerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
+    { }
 
     /**
      * Show the form for editing the specified resource.
@@ -56,9 +64,21 @@ class StoreFollowerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function follow($id)
     {
-        //
+
+        $user = Auth::User();
+        // $user = User::find(1);
+        $con = [
+            "user_id" => $user->id,
+            "store_id" => $id
+        ];
+        $row = StoreFollower::where($con)->first();
+        if (!$row) {
+            StoreFollower::create($con);
+        } else {
+            $this->destroy($row->id);
+        }
     }
 
     /**
@@ -81,6 +101,7 @@ class StoreFollowerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $row = StoreFollower::find($id);
+        $row->delete();
     }
 }
