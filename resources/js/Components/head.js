@@ -45,31 +45,7 @@ const menu = (
 );
 
 class Head extends Component {
-    state = {
-        products: [
-            { picture: "", name: "Product name here", price: "250$" },
-            {
-                picture: "",
-                name:
-                    "product number 2, this is the other product with long name or description or whatever to see how it fits in there",
-                price: "250$"
-            },
-            { picture: "", name: "Product name here", price: "250$" },
-            {
-                picture: "",
-                name:
-                    "product number 2, this is the other product with long name or description or whatever to see how it fits in there",
-                price: "250$"
-            },
-            { picture: "", name: "Product name here", price: "250$" },
-            {
-                picture: "",
-                name:
-                    "product number 2, this is the other product with long name or description or whatever to see how it fits in there",
-                price: "250$"
-            }
-        ]
-    };
+    state = {};
     render() {
         return (
             <div>
@@ -128,7 +104,10 @@ class Head extends Component {
                                             className="search-btn"
                                             size="large"
                                             icon="search"
-                                            style={{backgroundColor: "#F57224", color:'white'}}
+                                            style={{
+                                                backgroundColor: "#F57224",
+                                                color: "white"
+                                            }}
                                         >
                                             {/* <Icon type="search" /> */}
                                             Search

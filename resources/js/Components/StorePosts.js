@@ -38,23 +38,8 @@ class StorePosts extends Component {
                     dataSource={this.state.posts}
                     style={{ background: "white" }}
                     renderItem={element => (
-                        // <List.Item>
-                        //     <Card
-                        //         hoverable={true}
-                        //         bordered={false}
-                        //         cover={element.description}
-                        //     >
-                        // <img
-                        //     alt="postimage"
-                        //     src={element.image_path}
-                        //     width="900"
-                        // />
-                        //         <Meta description={element.created_at} />
-                        //     </Card>
-                        // </List.Item>
                         <List.Item
                             key={element.id}
-                            // actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
                             extra={
                                 <img
                                     width={272}

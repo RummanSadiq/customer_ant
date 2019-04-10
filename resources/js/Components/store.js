@@ -13,10 +13,10 @@ import {
 } from "antd";
 import Products from "./LimitedProducts";
 import axios from "axios";
-import FAQs from './LimitedFaqs';
-import StorePosts from './StorePosts';
-import Reviews from './Reviews';
-
+import FAQs from "./LimitedFaqs";
+import StorePosts from "./StorePosts";
+import Reviews from "./Reviews";
+import StoreDetails from "./storeDetails";
 
 import "../css/sbar.css";
 import MenuItem from "antd/lib/menu/MenuItem";
@@ -26,57 +26,11 @@ class Store extends Component {
         products: [],
         store: {},
         faqs: [],
-        posts:[],
-        Reviews: [
-            {
-                title: `ant design part`,
-                avatar:
-                    "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-                description:
-                    "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-                content:
-                    "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-            },
-            {
-                title: `ant design part`,
-                avatar:
-                    "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-                description:
-                    "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-                content:
-                    "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-            },
-            {
-                title: `ant design part`,
-                avatar:
-                    "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-                description:
-                    "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-                content:
-                    "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-            },
-            {
-                title: `ant design part`,
-                avatar:
-                    "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-                description:
-                    "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-                content:
-                    "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-            },
-            {
-                title: `ant design part`,
-                avatar:
-                    "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-                description:
-                    "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-                content:
-                    "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-            }
-        ]
+        posts: [],
+        Reviews: []
     };
     componentDidMount() {
-        console.log(this.props.match.params);
+        console.log('params received in props',this.props.match.params);
         axios.get("/api/shops/" + this.props.match.params.id).then(res => {
             const storedata = res.data;
             console.log(storedata);
@@ -90,8 +44,6 @@ class Store extends Component {
                 console.log(productsData);
                 this.setState({ products: productsData });
             });
-        
-         
     }
     render() {
         return (
@@ -157,7 +109,10 @@ class Store extends Component {
                                         icon="plus"
                                         size="large"
                                         shape="round"
-                                        style={{ backgroundColor: "#F57224", color:'white' }}
+                                        style={{
+                                            backgroundColor: "#F57224",
+                                            color: "white"
+                                        }}
                                     >
                                         Follow
                                     </Button>
@@ -165,7 +120,10 @@ class Store extends Component {
                                         icon="message"
                                         size="large"
                                         shape="round"
-                                        style={{ backgroundColor: "#F57224", color:'white' }}
+                                        style={{
+                                            backgroundColor: "#F57224",
+                                            color: "white"
+                                        }}
                                     >
                                         Message
                                     </Button>
@@ -178,109 +136,12 @@ class Store extends Component {
                                 </div>
                             }
                         >
-                            <div
-                                style={{
-                                    fontWeight: "bold"
-                                }}
-                            >
-                                <Row>
-                                    <Col span={12} className="infoColumns">
-                                        <span>Store Type: </span>
-                                        {this.state.store.store_type}
-                                    </Col>
-
-                                    <Col span={12} className="infoColumns">
-                                        <span style={{ fontWeight: "bold" }}>
-                                            Store Contact:{" "}
-                                        </span>
-                                        {this.state.store.contact}
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col span={12} className="infoColumns">
-                                        <span>Store Address: </span>
-                                        {this.state.store.address}
-                                    </Col>
-                                    <Col span={12} className="infoColumns">
-                                        <span>Store City: </span>
-                                        {this.state.store.store_type}
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col span={12} className="infoColumns">
-                                        <span>Store opens At: </span>
-                                        {this.state.store.open_time}
-                                    </Col>
-                                    <Col span={12} className="infoColumns">
-                                        {" "}
-                                        <span>Closing Time</span>
-                                        {this.state.store.close_time}
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col span={12} className="infoColumns">
-                                        {this.state.store.delivery > 0 && (
-                                            <span>Store Provides Delivery</span>
-                                        )}
-                                        {this.state.delivery <= 0 && (
-                                            <span>
-                                                Store does not Provide Delivery
-                                            </span>
-                                        )}
-                                    </Col>
-                                    <Col span={12} className="infoColumns">
-                                        {" "}
-                                        {this.state.store.wifi > 0 && (
-                                            <span>
-                                                <Icon type="wifi" />
-                                                Store has Wifi
-                                            </span>
-                                        )}
-                                        {!this.state.store.wifi > 0 && (
-                                            <span>
-                                                <Icon
-                                                    type="wifi"
-                                                    style={{
-                                                        color: "#F81D22"
-                                                    }}
-                                                />
-                                                /> Store does not have Wifi
-                                            </span>
-                                        )}
-                                    </Col>
-                                </Row>
-
-                                <Row>
-                                    <Col span={12} className="infoColumns">
-                                        {" "}
-                                        {this.state.store.card_payment > 0 && (
-                                            <span>
-                                                <Icon
-                                                    type="credit-card"
-                                                    theme="twoTone"
-                                                />
-                                                Store has Card Payment
-                                            </span>
-                                        )}
-                                        {!this.state.store.card_payment > 0 && (
-                                            <span>
-                                                <Icon
-                                                    type="credit-card"
-                                                    theme="filled"
-                                                    style={{
-                                                        fontSize: "50px",
-                                                        color: "#F81D22"
-                                                    }}
-                                                />
-                                                Store does not have Card Payment
-                                            </span>
-                                        )}
-                                    </Col>
-                                    {/* <Col span={12} className="infoColumns" /> */}
-                                </Row>
-                            </div>
                         </Card>
                     </Col>
+                    {this.state.store &&
+                    <StoreDetails details={this.state.store} />
+                    }
+
                 </Row>
                 <Row>
                     <Col lg={14} offset={6}>
@@ -289,19 +150,19 @@ class Store extends Component {
                 </Row>
                 <Row>
                     <Col lg={14} offset={6}>
-                        <FAQs id={this.props.match.params.id}/>
-                    </Col>
-                </Row>
-                
-                <Row>
-                    <Col lg={14} offset={6}>
-                        <StorePosts id={this.props.match.params.id}/>
+                        <FAQs id={this.props.match.params.id} />
                     </Col>
                 </Row>
 
                 <Row>
                     <Col lg={14} offset={6}>
-                        <Reviews id={this.props.match.params.id}/>
+                        <StorePosts id={this.props.match.params.id} />
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col lg={14} offset={6}>
+                        <Reviews id={this.props.match.params.id} />
                     </Col>
                 </Row>
             </div>
