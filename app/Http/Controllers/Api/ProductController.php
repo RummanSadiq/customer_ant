@@ -6,6 +6,8 @@ use App\Product;
 use App\Category;
 use App\Store;
 
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +23,7 @@ class ProductController extends Controller
     {
         $products = Product::all();
 
-        foreach($products as $prod) {
+        foreach ($products as $prod) {
             $prod['store_name'] = Store::find($prod->store_id)->name;
             $prod['store_picture'] = Store::find($prod->store_id)->display_picture;
             $prod['category_name'] = Category::find($prod->category_id)->name;
@@ -31,23 +33,55 @@ class ProductController extends Controller
 
     public function myProducts()
     {
-        
+
         $user = Auth::user();
         $store = $user->store;
         $products = $store->products->reverse()->values();
-        foreach($products as $prod) {
+        foreach ($products as $prod) {
             $prod["key"] = $prod->id;
             $prod["category"] = Category::find($prod->category_id)->name;
         }
         return response()->json($products);
     }
 
+    public function getFiltered(Request $request)
+    {
+        if ($request->has("search")) {
+            $products = DB::select("Select * from `prducts` where `products.name` like %?%", [$request['search']]);
+        } else {
 
-    public function getShopProducts($shop_id) {
-        
+            $products = Product::all();
+        }
+
+        if ($request->has("price_min")) {
+            $products = $products->where('price', '>=', $request['price_min'])->values();
+        }
+        if ($request->has("price_max")) {
+            $products = $products->where('price', '<=', $request['price_max'])->values();
+        }
+        if ($request->has("category")) {
+            $cat = Category::where('name', '=', $request['category'])->first();
+            if ($cat) {
+                $products = $products->where('category_id', $cat->id)->values();
+            }
+        }
+        if ($request->has("lat") && $request->has("long")) {
+            //
+        }
+
+
+
+
+        return response()->json($products);
+    }
+
+
+    public function getShopProducts($shop_id)
+    {
+
         $store = Store::find($shop_id);
         $products = $store->products->reverse()->values();
-        foreach($products as $prod) {
+        foreach ($products as $prod) {
             $prod["key"] = $prod->id;
             $prod["category"] = Category::find($prod->category_id)->name;
         }
@@ -78,7 +112,7 @@ class ProductController extends Controller
         return response()->json($product, 201);
     }
 
-    
+
 
     /**
      * Display the specified resource.

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, Card, Button, Carousel, List, Tabs, Icon } from "antd";
 import Products from "./LimitedProducts";
-import AllPosts from './AllPosts';
+import AllPosts from "./AllPosts";
 import Stores from "./LimitedStores";
 import cimage from "../Images/img1.jpg";
 import pimage from "../Images/pimg.png";
@@ -17,11 +17,14 @@ class HomePage extends Component {
     componentDidMount() {
         Axios.get("/api/products").then(res => {
             const products = res.data;
-            console.log('products data is', products);
+            console.log("Products data is", products);
             this.setState({ products: products });
         });
 
-     
+        Axios.get("/api/user").then(res => {
+            const products = res.data;
+            console.log("User data is", products);
+        });
     }
     render() {
         return (
@@ -89,7 +92,7 @@ class HomePage extends Component {
                         </TabPane>
                         <TabPane tab="Explore" key="2">
                             <Row>
-                                <Col lg={14} offset={6} >
+                                <Col lg={14} offset={6}>
                                     <AllPosts />
                                 </Col>
                             </Row>
