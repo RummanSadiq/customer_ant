@@ -17,6 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//User
+Route::get('/user', 'Api\UserController@index');
+
 
 //Shop
 Route::get('/shops', 'Api\StoreController@index');
@@ -51,6 +54,7 @@ Route::delete('/posts/{id}', 'Api\PostController@destroy');
 
 //Products
 Route::get('/products', 'Api\ProductController@index');
+Route::post('/products', 'Api\ProductController@getFiltered');
 Route::get('/products/shop/{id}', 'Api\ProductController@getShopProducts');
 Route::get('/products/{id}', 'Api\ProductController@show');
 
