@@ -18,6 +18,9 @@ const { Meta } = Card;
 class Stores extends Component {
     constructor(props) {
         super(props);
+        this.state.shops = this.props.shops;
+        this.state.title = this.props.title;
+        this.state.size = this.props.size;
     }
     state = {
         shops: [],
@@ -29,11 +32,12 @@ class Stores extends Component {
         this.getFollowed();
     }
     getStores() {
-        Axios.get("/api/shops").then(res => {
-            const shops = res.data;
-            console.log("Shops are", shops);
-            this.setState({ shops: shops });
-        });
+        // Axios.get("/api/shops").then(res => {
+        //     const shops = res.data;
+        //     console.log("Shops are", shops);
+        //     this.setState({ shops: shops });
+        // });
+        this.props.getShops();
     }
     getFollowed() {
         Axios.get("/api/followed").then(res => {
@@ -70,7 +74,7 @@ class Stores extends Component {
     render() {
         return (
             <Card
-                title={<h2>Stores</h2>}
+                title={<h2>{this.state.title}</h2>}
                 extra={<Button icon="plus">All</Button>}
                 bordered={false}
                 style={{ background: "#ECECEC" }}
@@ -90,7 +94,7 @@ class Stores extends Component {
                         onChange: page => {
                             console.log(page);
                         },
-                        pageSize: 6
+                        pageSize: this.state.size
                     }}
                     dataSource={this.state.shops}
                     renderItem={element => (

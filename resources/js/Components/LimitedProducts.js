@@ -1,24 +1,36 @@
 import React, { Component } from "react";
 import { Row, Col, Card, Button, Carousel, List, Avatar, Icon } from "antd";
-import { NavLink } from "react-router-dom";
-
+import { NavLink, Route, Redirect } from "react-router-dom";
+import ProductDetails from "./ProductDetails";
 const { Meta } = Card;
 class Products extends Component {
     constructor(props) {
         super(props);
         this.state.products = this.props.products;
+        this.state.title = this.props.title;
+        this.state.size = this.props.size;
     }
     state = {
-        products: []
+        products: [],
+        redirect: false
     };
-
+    renderRedirect = id => {
+        if (this.state.redirect) {
+            return <Redirect to={"/product/" + id} />;
+        }
+    };
+    setRedirect = () => {
+        this.setState({
+            redirect: true
+        });
+    };
     componentDidMount() {
         console.log("received props are", this.props.products);
     }
     render() {
         return (
             <Card
-                title={<h2>Products</h2>}
+                title={<h2>{this.state.title}</h2>}
                 extra={<Button icon="plus">All</Button>}
                 bordered={false}
                 style={{ background: "#ECECEC" }}
@@ -38,23 +50,23 @@ class Products extends Component {
                         onChange: page => {
                             console.log(page);
                         },
-                        pageSize: 6
+                        pageSize: this.state.size
                     }}
                     dataSource={this.props.products}
                     renderItem={element => (
                         <List.Item style={{ padding: "3%" }}>
+                            {this.renderRedirect(element.id)}
                             <Card
                                 hoverable
                                 cover={
-                                    <NavLink to={"product/" + element.id}>
-                                    <img
-                                        alt="example"
-                                        src={element.display_picture}
-                                    />
-                                </NavLink>
+                                    <div>
+                                        <img
+                                            alt="example"
+                                            src={element.display_picture}
+                                            onClick={this.setRedirect}
+                                        />
+                                    </div>
                                 }
-                                // style={{ width: 240 }}
-
                                 style={{
                                     width: 188,
                                     height: 290,
@@ -71,7 +83,9 @@ class Products extends Component {
                                     //     <Avatar src={element.store_picture} />
                                     // }
                                     title={
-                                        <NavLink to={"store/" + element.store_id}>
+                                        <NavLink
+                                            to={"store/" + element.store_id}
+                                        >
                                             {element.store_name}
                                         </NavLink>
                                     }

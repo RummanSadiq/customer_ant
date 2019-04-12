@@ -12,7 +12,7 @@ class App extends Component {
     render() {
         return (
             <div style={{ backgroundColor: "#F5F5F5" }}>
-                <Head />
+                {/* <Head /> */}
                 <SubPage/>
                 {/* <ProductDetails/> */}
             </div>
