@@ -46,12 +46,14 @@ class ProductController extends Controller
 
     public function getFiltered(Request $request)
     {
-        if ($request->has("search")) {
-            $products = DB::select("Select * from `prducts` where `products.name` like %?%", [$request['search']]);
-        } else {
+        // if ($request->has("search")) {
+        //     $products = DB::select("Select * from `prducts` where `products.name` like %?%", [$request['search']]);
+        // } else {
 
-            $products = Product::all();
-        }
+        // }
+        $products = Product::all();
+
+        $products = $products->reverse()->values();
 
         if ($request->has("price_min")) {
             $products = $products->where('price', '>=', $request['price_min'])->values();
@@ -68,6 +70,16 @@ class ProductController extends Controller
         if ($request->has("lat") && $request->has("long")) {
             //
         }
+
+        if ($request->has("low_price")) {
+            $products = $products->sortBy('price')->values();
+        }
+
+        if ($request->has("high_price")) {
+            $products = $products->sortByDesc('price')->values();
+        }
+
+
 
 
 

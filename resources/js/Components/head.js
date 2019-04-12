@@ -22,7 +22,6 @@ import "../css/sbar.css";
 import MenuItem from "antd/lib/menu/MenuItem";
 const Search = Input.Search;
 
-
 const menu = (
     <Menu>
         <MenuItem>Women's Fashion</MenuItem>
@@ -47,7 +46,7 @@ class Head extends Component {
     }
     state = {
         redirect: false,
-        r:false
+        r: false
     };
     handleSearch(value) {
         console.log("search value is", value);
@@ -68,10 +67,9 @@ class Head extends Component {
     renderRedirect = () => {
         if (this.state.redirect) {
             console.log("redirecting");
-            window.location.reload();
-            this.setState({r:true});
-            return <Redirect to='/search' />
-              
+            // window.location.reload();
+            // this.setState({r:true});
+            return <Redirect to="/search" />;
         }
     };
     render() {
