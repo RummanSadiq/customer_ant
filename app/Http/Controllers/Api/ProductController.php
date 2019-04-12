@@ -46,12 +46,12 @@ class ProductController extends Controller
 
     public function getFiltered(Request $request)
     {
-        // if ($request->has("search")) {
-        //     $products = DB::select("Select * from `prducts` where `products.name` like %?%", [$request['search']]);
-        // } else {
+        if ($request->has("search")) {
+            $products = collect(DB::select("Select * from products where name like ?", ['%' . $request['search'] . '%']));
+        } else {
 
-        // }
-        $products = Product::all();
+            $products = Product::all();
+        }
 
         $products = $products->reverse()->values();
 
