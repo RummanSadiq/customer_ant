@@ -36,7 +36,7 @@ class ProductDetails extends Component {
                             shape="round"
                             icon="plus"
                         >
-                            Add to Cart
+                            Add to List
                         </Button>
                         <span>Store doesn't provide shipping</span>
                     </Col>

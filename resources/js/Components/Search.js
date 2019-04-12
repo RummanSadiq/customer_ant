@@ -1,172 +1,119 @@
 import React, { Component } from "react";
 import {
-  Row,
-  Col,
-  List,
-  Rate,
-  Avatar,
-  Button,
-  Dropdown,
-  Icon,
-  Menu
+    Row,
+    Col,
+    List,
+    Rate,
+    Avatar,
+    Button,
+    Dropdown,
+    Icon,
+    Menu
 } from "antd";
+import Head from "./head";
+
+import Axios from 'axios';
+import Stores from "./LimitedStores";
+import Products from "./LimitedProducts";
 
 const menu = (
-  <Menu>
-    <Menu.Item key="1">
-      <Icon type="user" />
-      1st menu item
-    </Menu.Item>
-    <Menu.Item key="2">
-      <Icon type="user" />
-      2nd menu item
-    </Menu.Item>
-    <Menu.Item key="3">
-      <Icon type="user" />
-      3rd item
-    </Menu.Item>
-  </Menu>
+    <Menu>
+        <Menu.Item key="1">
+            <Icon type="pushpin" />
+            Location
+        </Menu.Item>
+        <Menu.Item key="2">
+            <Icon type="arrow-up" />
+            Trending
+        </Menu.Item>
+        <Menu.Item key="3">
+            <Icon type="up" />
+            Price high to low
+        </Menu.Item>
+        <Menu.Item key="4">
+            <Icon type="down" />
+            Price low to high
+        </Menu.Item>
+    </Menu>
 );
-class Search extends Component {
-  state = {
-    Reviews: [
-      {
-        title: `ant design part`,
-        avatar:
-          "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-        description:
-          "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-        content:
-          "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-      },
-      {
-        title: `ant design part`,
-        avatar:
-          "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-        description:
-          "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-        content:
-          "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-      },
-      {
-        title: `ant design part`,
-        avatar:
-          "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-        description:
-          "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-        content:
-          "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-      },
-      {
-        title: `ant design part`,
-        avatar:
-          "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-        description:
-          "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-        content:
-          "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-      },
-      {
-        title: `ant design part`,
-        avatar:
-          "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-        description:
-          "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-        content:
-          "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-      }
-    ]
-  };
+class SearchComponent extends Component {
+    constructor(props) {
+        super(props);
+    }
 
-  render() {
-    return (
-      <Row>
-        <Col span={16} offset={6}>
-          <div>
-            <Row>
-              <Col span={4}>
-                <h2>Search Results:</h2>
-              </Col>
-              <Col span={6} offset={12}>
-                <Row>
-                  <Col span={6}>
-                    {" "}
-                    <h2>Sort by:</h2>
-                  </Col>
-                  <Col span={12}>
-                    <Dropdown overlay={menu}>
-                      <Button style={{ marginLeft: 8 }}>
-                        <Icon type="down" />
-                      </Button>
-                    </Dropdown>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </div>
+    componentDidMount(){
+      console.log('Lets see if props got here', this.props.value);
+      this.getProducts();
+      this.getStores();
+    }
 
-          <List
-            itemLayout="vertical"
-            size="large"
-            pagination={{
-              onChange: page => {
-                console.log(page);
-              },
-              pageSize: 10
-            }}
-            dataSource={this.state.Reviews}
-            // footer={
-            //   <div>
-            //     <b>ant design</b> footer part
-            //   </div>
-            // }
-            renderItem={item => (
-              <List.Item
-                key={item.title}
-                // actions={[
-                //   <IconText type="star-o" text="156" />,
-                //   <IconText type="like-o" text="156" />,
-                //   <IconText type="message" text="2" />
-                // ]}
-                // extra={
-                //   <img
-                //     width={272}
-                //     alt="logo"
-                //     src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-                //   />
-                // }
-              >
+    getProducts() {
+        Axios.get("/api/products").then(res => {
+            const products = res.data;
+            console.log("products data is", products);
+            this.setState({ products: products });
+        });
+    }
+
+    getStores() {
+        Axios.get("/api/shops").then(res => {
+            const shops = res.data;
+            console.log("Shops are", shops);
+            this.setState({ shops: shops });
+        });
+    }
+    state = {};
+
+    render() {
+        return (
+            <div>
+              <Head/>
                 <Row>
-                  <Col span={4}>
-                    <img
-                      height={272}
-                      width={200}
-                      alt="logo"
-                      src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-                    />
-                  </Col>
-                  <Col span={12}>
-                  {<div><h2>{item.title}</h2>Store name here</div>}
-                  {/* {<div><br/></div>} */}
-                    {item.content}
-                  </Col>
-                  <Col span={4}>
-                    <div style={{ padding: "20px" }}>$50</div>
-                    <Button icon="shopping-cart">Add To My List</Button>
-                  </Col>
+                    <Col span={16} offset={4}>
+                        <Row>
+                            <Col span={4}>
+                                <h2>Search Results:</h2>
+                            </Col>
+                            <Col span={6} offset={12}>
+                                <Row>
+                                    <Col span={6}>
+                                        {" "}
+                                        <h2>Sort by:</h2>
+                                    </Col>
+                                    <Col span={12}>
+                                        <Dropdown overlay={menu}>
+                                            <Button style={{ marginLeft: 8 }}>
+                                                <Icon type="down" />
+                                            </Button>
+                                        </Dropdown>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+                    </Col>
                 </Row>
-                <List.Item.Meta
-                      // avatar={<Avatar src={item.avatar} />}
-                      title="Product name here"
-                      description={<Rate disabled defaultValue={2} />}
-                    />
-              </List.Item>
-            )}
-          />
-        </Col>
-      </Row>
-    );
-  }
+                <Row>
+                    <Col lg={16} offset={4}>
+                        {this.state.shops && (
+                            <Stores
+                                shops={this.state.shops}
+                                title="Stores"
+                                size={6}
+                                getShops={this.getStores}
+                            />
+                        )}
+                        {this.state.products && (
+                            <Products
+                                products={this.state.products}
+                                title="Products"
+                                size={6}
+                            />
+                        )}
+                    </Col>
+                </Row>
+            </div>
+        );
+    }
 }
 
-export default Search;
+export default SearchComponent;

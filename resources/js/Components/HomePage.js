@@ -1,101 +1,54 @@
 import React, { Component } from "react";
 import { Row, Col, Card, Button, Carousel, List, Tabs, Icon } from "antd";
 import Products from "./LimitedProducts";
-import AllPosts from './AllPosts';
+import AllPosts from "./AllPosts";
 import Stores from "./LimitedStores";
 import cimage from "../Images/img1.jpg";
 import pimage from "../Images/pimg.png";
+import Head from "./head";
+import HomeComponents from "./HomeComponents";
+
 import Axios from "axios";
+import SearchComponent from "./Search";
 
 const { TabPane } = Tabs;
 class HomePage extends Component {
+    constructor(props) {
+        super(props);
+        this.getStores = this.getStores.bind(this);
+    }
     state = {
-        products: [],
-        shops: [],
-        done: false
+        // products: [],
+        // shops: [],
+        done: false,
+        go: false
     };
     componentDidMount() {
-        Axios.get("/api/products").then(res => {
-            const products = res.data;
-            console.log('products data is', products);
-            this.setState({ products: products });
-        });
+        // Axios.get("/api/products").then(res => {
+        //     const products = res.data;
+        //     console.log("products data is", products);
+        //     this.setState({ products: products });
+        // });
+        // this.getStores();
+    }
+    goSearch = () => {
+        console.log("inside go search");
+        this.setState({ done: !this.state.done });
+    };
 
-     
+    getStores() {
+        Axios.get("/api/shops").then(res => {
+            const shops = res.data;
+            console.log("Shops are", shops);
+            this.setState({ shops: shops });
+        });
     }
     render() {
         return (
             <div>
-                <Row>
-                    <Col>
-                        <Carousel>
-                            <div>
-                                <img
-                                    src={cimage}
-                                    width="100%"
-                                    height="100%"
-                                    alt="image"
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    src={cimage}
-                                    width="100%"
-                                    height="100%"
-                                    alt="image"
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    src={cimage}
-                                    width="100%"
-                                    height="100%"
-                                    alt="image"
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    src={cimage}
-                                    width="100%"
-                                    height="100%"
-                                    alt="image"
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    src={cimage}
-                                    width="100%"
-                                    height="100%"
-                                    alt="image"
-                                />
-                            </div>
-                        </Carousel>
-                    </Col>
-                </Row>
-                <Col>
-                    {" "}
-                    <Tabs
-                        defaultActiveKey="1"
-                        size={"large"}
-                        style={{ textAlign: "center" }}
-                    >
-                        <TabPane tab="Browse" key="1">
-                            <Row>
-                                <Col lg={14} offset={6}>
-                                    <Stores />
-                                    <Products products={this.state.products} />
-                                </Col>
-                            </Row>
-                        </TabPane>
-                        <TabPane tab="Explore" key="2">
-                            <Row>
-                                <Col lg={14} offset={6} >
-                                    <AllPosts />
-                                </Col>
-                            </Row>
-                        </TabPane>
-                    </Tabs>
-                </Col>
+                <Head goSearch={this.goSearch} />
+
+                <HomeComponents />
             </div>
         );
     }
