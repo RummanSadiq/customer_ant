@@ -43,6 +43,7 @@ Route::get('/followed', 'Api\StoreFollowerController@index');
 //Categories
 Route::get('/categories/{parent}', 'Api\CategoryController@show');
 
+
 //Posts
 Route::get('/posts', 'Api\PostController@index');
 Route::get('/posts/shop/{id}', 'Api\PostController@getShopPosts');
