@@ -46,8 +46,6 @@ class HomePage extends Component {
     render() {
         return (
             <div>
-                <Head goSearch={this.goSearch} />
-
                 <HomeComponents />
             </div>
         );

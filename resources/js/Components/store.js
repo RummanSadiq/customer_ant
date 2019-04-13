@@ -148,11 +148,11 @@ class Store extends Component {
                 <Row style={{ marginTop: "3%" }}>
                     <Col span={12} offset={6}>
                         <Card
-                            title={
-                                <h1 style={{ textAlign: "center" }}>
-                                    Information
-                                </h1>
-                            }
+                            // title={
+                            //     <h1>
+                                    
+                            //     </h1>
+                            // }
                             bordered={false}
                             extra={
                                 <div>
@@ -208,7 +208,151 @@ class Store extends Component {
                                     </div>
                                 </div>
                             }
-                        />
+                        >
+                            <div style={{ textAlign: "center" }}>
+                                <h1>{this.state.store.name}</h1>
+                            </div>
+                            <hr style={{ marginBottom: 0, width: 5 }} />
+                            <Row style={{ fontFamily: "sans-serif" }}>
+                                <Col
+                                    span={6}
+                                    style={{
+                                        textAlign: "center",
+                                        fontSize: 16
+                                    }}
+                                >
+                                    <Icon type="phone" />
+                                    042 35224868
+                                </Col>
+                                <Col
+                                    span={8}
+                                    offset={2}
+                                    style={{
+                                        textAlign: "center",
+                                        fontSize: 16
+                                    }}
+                                >
+                                    <Icon type="info" />
+                                    437 G1 Market, Block G 1 Phase 1 Johar Town,
+                                    Lahore, Punjab
+                                </Col>
+                                <Col
+                                    span={6}
+                                    style={{
+                                        textAlign: "center",
+                                        fontSize: 16
+                                    }}
+                                >
+                                    <Icon type="info" /> Store City: Lahore
+                                </Col>
+                            </Row>
+                            <hr />
+                            <Row
+                                style={{
+                                    padding: 20,
+                                    backgroundColor: "#ECECEC"
+                                }}
+                            >
+                                <Col
+                                    span={4}
+                                    style={{
+                                        textAlign: "center",
+                                        fontSize: 14,
+                                        borderRight: 50,
+                                        borderRightStyle: "solid",
+                                        borderWidth: 2,
+                                        height: "100%"
+                                    }}
+                                >
+                                    <Icon
+                                        type="bars"
+                                        style={{ fontSize: 20 }}
+                                    />{" "}
+                                    Tech
+                                </Col>
+
+                                <Col
+                                    span={8}
+                                    style={{
+                                        textAlign: "center",
+                                        fontSize: 14,
+                                        borderRight: 50,
+                                        borderRightStyle: "solid",
+                                        borderWidth: 2,
+                                        height: "100%"
+                                    }}
+                                >
+                                    <Icon
+                                        type="clock-circle"
+                                        style={{ fontSize: 20 }}
+                                    />{" "}
+                                    <h3 style={{ display: "inline" }}>
+                                        Opens at:
+                                    </h3>{" "}
+                                    10:00am<br />
+                                    <Icon
+                                        type="clock-circle"
+                                        style={{ fontSize: 20 }}
+                                    />{" "}
+                                    <h3 style={{ display: "inline" }}>
+                                        Closes at:
+                                    </h3>{" "}
+                                    12:30am
+                                </Col>
+                                <Col
+                                    span={4}
+                                    style={{
+                                        textAlign: "center",
+                                        fontSize: 14,
+                                        borderRight: 50,
+                                        borderRightStyle: "solid",
+                                        borderWidth: 2,
+                                        height: "100%"
+                                    }}
+                                >
+                                    <Icon
+                                        type="step-forward"
+                                        style={{ fontSize: 20 }}
+                                    />{" "}
+                                    <h3 style={{ display: "inline" }}>
+                                        Delivery:
+                                    </h3>{" "}
+                                    NO
+                                </Col>
+                                <Col
+                                    span={4}
+                                    style={{
+                                        textAlign: "center",
+                                        fontSize: 14,
+                                        borderRight: 50,
+                                        borderRightStyle: "solid",
+                                        borderWidth: 2,
+                                        height: "100"
+                                    }}
+                                >
+                                    <Icon
+                                        type="wifi"
+                                        style={{ fontSize: 20 }}
+                                    />{" "}
+                                    <h3 style={{ display: "inline" }}>Wifi</h3>{" "}
+                                    No
+                                </Col>
+                                <Col
+                                    span={4}
+                                    style={{
+                                        textAlign: "center",
+                                        fontSize: 14
+                                    }}
+                                >
+                                    <Icon
+                                        type="credit-card"
+                                        style={{ fontSize: 20 }}
+                                    />{" "}
+                                    <h3 style={{ display: "inline" }}>Card:</h3>{" "}
+                                    YES
+                                </Col>
+                            </Row>
+                        </Card>
                     </Col>
                     {/* {this.state.store &&
                     <StoreDetails details={this.state.store} />

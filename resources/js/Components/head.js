@@ -17,11 +17,11 @@ import {
 import { BrowserRouter, Route, Redirect, NavLink } from "react-router-dom";
 import SearchResults from "./Search";
 import logo from "../Images/logo.png";
+import axios from "axios";
 
 import "../css/sbar.css";
 import MenuItem from "antd/lib/menu/MenuItem";
 const Search = Input.Search;
-
 
 const menu = (
     <Menu>
@@ -47,8 +47,17 @@ class Head extends Component {
     }
     state = {
         redirect: false,
-        r:false
+        r: false,
+        logged: ""
     };
+
+    componentDidMount() {
+        axios.get("/api/user").then(res => {
+            const user = res.data;
+            console.log("user is ", user);
+            this.setState({ logged: user });
+        });
+    }
     handleSearch(value) {
         console.log("search value is", value);
         // this.setState({ value: value }, () => {
@@ -68,10 +77,9 @@ class Head extends Component {
     renderRedirect = () => {
         if (this.state.redirect) {
             console.log("redirecting");
-            window.location.reload();
-            this.setState({r:true});
-            return <Redirect to='/search' />
-              
+            // window.location.reload();
+            // this.setState({r:true});
+            return <Redirect to="/search" />;
         }
     };
     render() {
@@ -95,8 +103,19 @@ class Head extends Component {
                             }}
                         >
                             <Menu.Item key="1">Store owner?</Menu.Item>
-                            <Menu.Item key="2">Login</Menu.Item>
-                            <Menu.Item key="3">Sign up</Menu.Item>
+                            {this.state.logged.id && (
+                                <Menu.Item key="2">Logout</Menu.Item>
+                            )}
+                            {!this.state.logged.id && (
+                                <Menu.Item key="2">Login</Menu.Item>
+                            )}
+                            {this.state.logged.id && (
+                                <Menu.Item key="3">Profile</Menu.Item>
+                            )}
+                            {!this.state.logged.id && (
+                                <Menu.Item key="3">Signup</Menu.Item>
+                            )}
+                           
                         </Menu>
                     </div>
                     <Row>
