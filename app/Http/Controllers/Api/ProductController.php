@@ -136,7 +136,7 @@ class ProductController extends Controller
     public function show($product_id)
     {
         $product = Product::findOrFail($product_id);
-        $product->store;
+        $product->store->user;
         $reviews = $product->reviews;
 
         $total = 0;
@@ -144,7 +144,9 @@ class ProductController extends Controller
         foreach ($reviews as $rev) {
             $total += $rev['rating'];
             $noOfReviews++;
+            $rev->user;
         }
+
 
         $product["avg_rating"] = $total / $noOfReviews;
         $product["key"] = $product->id;
