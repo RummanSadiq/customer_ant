@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\ProductReview;
 use App\Product;
 use App\Category;
 use App\Store;
@@ -134,8 +135,22 @@ class ProductController extends Controller
      */
     public function show($product_id)
     {
-        $product = Product::find($product_id);
+        $product = Product::findOrFail($product_id);
+        $product->store->user;
+        $reviews = $product->reviews;
+
+        $total = 0;
+        $noOfReviews = 0;
+        foreach ($reviews as $rev) {
+            $total += $rev['rating'];
+            $noOfReviews++;
+            $rev->user;
+        }
+
+
+        $product["avg_rating"] = $total / $noOfReviews;
         $product["key"] = $product->id;
+
         $product["category"] = Category::find($product->category_id)->name;
         return response()->json($product);
     }

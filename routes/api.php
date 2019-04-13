@@ -75,6 +75,13 @@ Route::post('/reviews', 'Api\ReviewController@store');
 // Route::post('/reviews/{id}', 'Api\ReviewController@update');
 Route::delete('/reviews/{id}', 'Api\ReviewController@destroy');
 
+//Product Reviews
+// Route::get('/reviews', 'Api\ProductReviewController@index');
+// Route::get('/reviews/shops/{id}', 'Api\ProductReviewController@shopReviews');
+Route::post('/products/reviews', 'Api\ProductReviewController@store');
+// Route::post('/reviews/{id}', 'Api\ProductReviewController@update');
+Route::delete('/products/reviews/{id}', 'Api\ProductReviewController@destroy');
+
 
 //Messages
 Route::get('/messages', 'Api\MessageController@index');
