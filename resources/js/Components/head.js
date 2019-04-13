@@ -143,7 +143,7 @@ class Head extends Component {
                                     }}
                                 />
                                 <Button type="primary" rounded>
-                                    <NavLink to={"search/" + this.state.value}>
+                                    <NavLink to={"/search/" + this.state.value}>
                                         Do Something please
                                     </NavLink>
                                 </Button>
@@ -159,18 +159,20 @@ class Head extends Component {
                     </Row>{" "}
                     <Row>
                         <Col offset={9}>
-                            <div>
+                            <div style={{padding:'2%'}}>
                                 <Dropdown overlay={menu}>
-                                    <Button icon="appstore" shape="round">
-                                        Categories
+                                    <Button icon="appstore" rounded>
+                                        <NavLink to="/categories">
+                                            Categories
+                                        </NavLink>
                                     </Button>
                                 </Dropdown>
 
-                                <Button icon="shop" shape="round">
+                                <Button icon="shop" rounded>
                                     Stores
                                 </Button>
 
-                                <Button icon="database" shape="round">
+                                <Button icon="database" rounded>
                                     Products
                                 </Button>
                             </div>
