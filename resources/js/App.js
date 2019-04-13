@@ -14,8 +14,8 @@ class App extends Component {
         return (
             <div style={{ backgroundColor: "#F5F5F5" }}>
                 <Head />
-                <Categories/>
-                {/* <SubPage/> */}
+                {/* <Categories/> */}
+                <SubPage/>
                 {/* <ProductDetails/> */}
             </div>
         );

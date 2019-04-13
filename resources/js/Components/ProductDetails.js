@@ -38,7 +38,7 @@ class ProductDetails extends Component {
                         <h4>
                             {this.state.product.description}
                         </h4>
-                        <Rate disabled defaultValue={4} />
+                        <Rate disabled allowHalf defaultValue={3.5} />
                         <span>47 reviews</span>
                         <span>Shop name{this.state.product.store_id}</span>
                         <h2>Rs. {this.state.product.price}</h2>
