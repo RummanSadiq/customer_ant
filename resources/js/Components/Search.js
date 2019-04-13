@@ -67,7 +67,6 @@ class SearchComponent extends Component {
     render() {
         return (
             <div>
-              <Head/>
                 <Row>
                     <Col span={16} offset={4}>
                         <Row>

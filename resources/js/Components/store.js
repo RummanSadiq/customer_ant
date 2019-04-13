@@ -32,7 +32,6 @@ class Store extends Component {
         store: {},
         faqs: [],
         posts: [],
-        Reviews: [],
         followed: [],
         id: 1
     };
@@ -51,6 +50,7 @@ class Store extends Component {
         });
 
         this.getFollowed();
+        this.getReviews();
     }
     getFollowed() {
         axios.get("/api/followed").then(res => {
@@ -95,6 +95,14 @@ class Store extends Component {
             // return false;
             this.setState({ f: false });
         }
+    }
+
+    getReviews (){
+        axios.get("/api/reviews/shops/"+this.state.id).then(res => {
+            const reviewsData = res.data;
+            console.log("Reviews  are", reviewsData);
+            this.setState({ Reviews: reviewsData });
+        });
     }
     render() {
         return (
@@ -222,7 +230,7 @@ class Store extends Component {
                                     }}
                                 >
                                     <Icon type="phone" />
-                                    042 35224868
+                                    {this.state.store.contact}
                                 </Col>
                                 <Col
                                     span={8}
@@ -233,8 +241,7 @@ class Store extends Component {
                                     }}
                                 >
                                     <Icon type="info" />
-                                    437 G1 Market, Block G 1 Phase 1 Johar Town,
-                                    Lahore, Punjab
+                                    {this.state.store.address}
                                 </Col>
                                 <Col
                                     span={6}
@@ -268,7 +275,7 @@ class Store extends Component {
                                         type="bars"
                                         style={{ fontSize: 20 }}
                                     />{" "}
-                                    Tech
+                                    {this.state.store.store_type} type
                                 </Col>
 
                                 <Col
@@ -289,7 +296,7 @@ class Store extends Component {
                                     <h3 style={{ display: "inline" }}>
                                         Opens at:
                                     </h3>{" "}
-                                    10:00am<br />
+                                    {this.state.store.open_time}<br />
                                     <Icon
                                         type="clock-circle"
                                         style={{ fontSize: 20 }}
@@ -297,7 +304,7 @@ class Store extends Component {
                                     <h3 style={{ display: "inline" }}>
                                         Closes at:
                                     </h3>{" "}
-                                    12:30am
+                                    {this.state.store.close_time}
                                 </Col>
                                 <Col
                                     span={4}
@@ -317,7 +324,8 @@ class Store extends Component {
                                     <h3 style={{ display: "inline" }}>
                                         Delivery:
                                     </h3>{" "}
-                                    NO
+                                   {this.state.delivery >0 && 'Yes'}
+                                   {!this.state.delivery >0 && 'No'}
                                 </Col>
                                 <Col
                                     span={4}
@@ -335,7 +343,8 @@ class Store extends Component {
                                         style={{ fontSize: 20 }}
                                     />{" "}
                                     <h3 style={{ display: "inline" }}>Wifi</h3>{" "}
-                                    No
+                                    {this.state.wifi >0 && 'Yes'}
+                                   {!this.state.wifi >0 && 'No'}
                                 </Col>
                                 <Col
                                     span={4}
@@ -349,7 +358,8 @@ class Store extends Component {
                                         style={{ fontSize: 20 }}
                                     />{" "}
                                     <h3 style={{ display: "inline" }}>Card:</h3>{" "}
-                                    YES
+                                    {this.state.card_payment >0 && 'Yes'}
+                                   {!this.state.card_payment >0 && 'No'}
                                 </Col>
                             </Row>
                         </Card>
@@ -377,7 +387,10 @@ class Store extends Component {
 
                 <Row>
                     <Col lg={14} offset={6}>
-                        <Reviews id={this.props.match.params.id} />
+                    {this.state.Reviews &&
+                    <Reviews id={this.props.match.params.id} Reviews={this.state.Reviews} size={3} title='Store Reviews'/>
+                    }
+                        
                     </Col>
                 </Row>
             </div>

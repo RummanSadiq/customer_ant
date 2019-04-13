@@ -57,12 +57,12 @@ class ProductDetails extends Component {
                 <hr />
                 <Row style={{ backgroundColor: "white" }}>
                     <Col span={16} offset={4}>
-                        <Reviews />
+                        <Reviews  title='Product Reviews' size={3} Reviews={this.state.Reviews}/>
                     </Col>
                 </Row>
                 <Row style={{ backgroundColor: "white" }}>
                     <Col span={16} offset={4}>
-                        <Products />
+                        <Products title='Similar products' products={this.state.products} size={6}/>
                     </Col>
                 </Row>
             </div>

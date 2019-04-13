@@ -14,7 +14,7 @@ import axios from "axios";
 class Reviews extends Component {
     constructor(props) {
         super(props);
-        this.state.Reviews = this.props.reviews;
+        this.state.Reviews = this.props.Reviews;
         this.state.title = this.props.title;
         this.state.size = this.props.size;
     }
@@ -23,7 +23,7 @@ class Reviews extends Component {
     };
 
     componentDidMount() {
-        // axios.get("/api/reviews/").then(res => {
+        // axios.get("/api/reviews/shops/").then(res => {
         //     const reviewsData = res.data;
         //     console.log("Reviews  are", reviewsData);
         //     this.setState({ Reviews: reviewsData });
@@ -32,20 +32,11 @@ class Reviews extends Component {
     render() {
         return (
             <div>
-                {/* <Row>
-                    <Col
-                        // xs={6}
-                        // sm={6}
-                        // md={8}
-                        // lg={16}
-                        offset={4}
-                        type="flex"
-                        justify="start"
-                    > */}
+                
                 <Card
-                    title={<h2>User Reviews</h2>}
+                    title={<h2>{this.state.title}</h2>}
                     bordered={false}
-                    extra={<Button icon="plus">More</Button>}
+                    extra={<Button icon="plus">Add a Review</Button>}
                     style={{ background: "#ECECEC" }}
                 >
                     <List
@@ -55,7 +46,7 @@ class Reviews extends Component {
                             onChange: page => {
                                 console.log(page);
                             },
-                            pageSize: 3
+                            pageSize: this.state.size
                         }}
                         dataSource={this.state.Reviews}
                         renderItem={item => (
@@ -71,18 +62,17 @@ class Reviews extends Component {
                             >
                                 <List.Item.Meta
                                     avatar={<Avatar src={item.avatar} />}
-                                    title={<a href={item.href}>{item.title}</a>}
+                                    title={<a href={item.href}>{item.username}</a>}
                                     description={
-                                        <Rate disabled defaultValue={2} />
+                                        
+                                        <Rate disabled defaultValue={item.rating} />
                                     }
                                 />
-                                {item.content}
+                                {item.description}
                             </List.Item>
                         )}
                     />
                 </Card>
-                {/* </Col>
-                </Row> */}
             </div>
         );
     }

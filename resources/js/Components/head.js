@@ -60,12 +60,11 @@ class Head extends Component {
     }
     handleSearch(value) {
         console.log("search value is", value);
-        // this.setState({ value: value }, () => {
-        //     console.log("about to redirect");
-        //     // <Redirect to="/search" />
-        // });
-        this.setRedirect();
-        this.props.goSearch();
+        this.setState({ value: value }, () => {
+            console.log("about to redirect");
+            this.setRedirect();
+        });
+        
     }
 
     setRedirect = () => {
@@ -79,7 +78,7 @@ class Head extends Component {
             console.log("redirecting");
             // window.location.reload();
             // this.setState({r:true});
-            return <Redirect to="/search" />;
+            return <Redirect to={"/search/" + this.state.value} />;
         }
     };
     render() {
@@ -115,7 +114,6 @@ class Head extends Component {
                             {!this.state.logged.id && (
                                 <Menu.Item key="3">Signup</Menu.Item>
                             )}
-                           
                         </Menu>
                     </div>
                     <Row>
@@ -145,6 +143,11 @@ class Head extends Component {
                                         marginLeft: "1%"
                                     }}
                                 />
+                                <Button type="primary" rounded>
+                                    <NavLink to={"search/" + this.state.value}>
+                                        Do Something please
+                                    </NavLink>
+                                </Button>
                                 <Icon
                                     type="shopping-cart"
                                     style={{

@@ -85,8 +85,8 @@ class Stores extends Component {
                         column: 4,
                         // xs: 1,
                         // sm: 2,
-                        // md: 1,
-                        // lg: 1,
+                        md: 4,
+                        lg: 5,
                         xl: 6
                         // xxl: 3
                     }}
@@ -106,6 +106,7 @@ class Stores extends Component {
                                         <img
                                             alt="example"
                                             src={element.display_picture}
+                                            
                                         />
                                     </NavLink>
                                 }
