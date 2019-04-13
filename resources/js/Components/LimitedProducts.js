@@ -38,13 +38,13 @@ class Products extends Component {
                 <List
                     grid={{
                         gutter: 18,
-                        column: 4,
-                        // xs: 1,
-                        // sm: 2,
-                        // md: 1,
-                        // lg: 1,
-                        xl: 6
-                        // xxl: 3
+                        column: 6,
+                        xs: 1,
+                        sm: 2,
+                        md: 2,
+                        lg: 3,
+                        xl: 3,
+                        xxl: 4
                     }}
                     pagination={{
                         onChange: page => {

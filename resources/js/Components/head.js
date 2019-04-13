@@ -64,7 +64,6 @@ class Head extends Component {
             console.log("about to redirect");
             this.setRedirect();
         });
-        
     }
 
     setRedirect = () => {

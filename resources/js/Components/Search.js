@@ -12,7 +12,7 @@ import {
 } from "antd";
 import Head from "./head";
 
-import Axios from 'axios';
+import Axios from "axios";
 import Stores from "./LimitedStores";
 import Products from "./LimitedProducts";
 
@@ -41,10 +41,10 @@ class SearchComponent extends Component {
         super(props);
     }
 
-    componentDidMount(){
-      console.log('Lets see if props got here', this.props.value);
-      this.getProducts();
-      this.getStores();
+    componentDidMount() {
+        console.log("Lets see if props got here", this.props.value);
+        this.getProducts();
+        this.getStores();
     }
 
     getProducts() {

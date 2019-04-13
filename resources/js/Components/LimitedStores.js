@@ -82,13 +82,13 @@ class Stores extends Component {
                 <List
                     grid={{
                         gutter: 18,
-                        column: 4,
-                        // xs: 1,
-                        // sm: 2,
-                        md: 4,
-                        lg: 5,
-                        xl: 6
-                        // xxl: 3
+                        column: 6,
+                        xs: 1,
+                        sm: 2,
+                        md: 2,
+                        lg: 3,
+                        xl: 3,
+                        xxl: 4
                     }}
                     pagination={{
                         onChange: page => {
@@ -106,7 +106,6 @@ class Stores extends Component {
                                         <img
                                             alt="example"
                                             src={element.display_picture}
-                                            
                                         />
                                     </NavLink>
                                 }
