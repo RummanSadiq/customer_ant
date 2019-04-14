@@ -43,12 +43,12 @@ const menu = (
 class Head extends Component {
     constructor(props) {
         super(props);
-        this.setRedirect = this.setRedirect.bind(this);
     }
     state = {
         redirect: false,
         r: false,
-        logged: ""
+        logged: "",
+        value: ""
     };
 
     componentDidMount() {
@@ -58,38 +58,15 @@ class Head extends Component {
             this.setState({ logged: user });
         });
     }
-    handleSearch(value) {
-        console.log("search value is", value);
-        this.setState({ value: value }, () => {
-            console.log("about to redirect");
-            this.setRedirect();
-        });
-    }
+    handleSearch = e => {
+        console.log("search value is", e.target.value);
+        this.setState({ value: e.target.value });
+    };
 
-    setRedirect = () => {
-        console.log("setting redirect");
-        this.setState({
-            redirect: true
-        });
-    };
-    renderRedirect = () => {
-        if (this.state.redirect) {
-            console.log("redirecting");
-            // window.location.reload();
-            // this.setState({r:true});
-            return <Redirect to={"/search/" + this.state.value} />;
-        }
-    };
     render() {
         return (
             <BrowserRouter>
                 <div>
-                    {this.renderRedirect()}
-                    {/* <Route
-                        path="/search"
-                        render={props => <SearchResults {...props} />}
-                        value={this.state.value}
-                    /> */}
                     <div style={{ backgroundColor: "#F5F5F5" }}>
                         <Menu
                             theme="light"
@@ -118,70 +95,67 @@ class Head extends Component {
                     <Row>
                         <Col offset={4}>
                             <div
-                                className="global-search-wrapper"
                                 style={{
                                     paddingRight: "50px",
                                     padding: "1%",
                                     position: "relative"
                                 }}
                             >
-                                <img
-                                    src={logo}
-                                    alt="Shopx"
-                                    width="8%"
-                                    height="8%"
-                                />
-
-                                <Search
-                                    placeholder="input search text"
-                                    enterButton="Search"
+                                <NavLink to="/">
+                                    <img
+                                        src={logo}
+                                        alt="Shopx"
+                                        width="8%"
+                                        height="8%"
+                                    />
+                                </NavLink>
+                                <Input
+                                    onChange={this.handleSearch}
                                     size="large"
-                                    onSearch={value => this.handleSearch(value)}
-                                    style={{
-                                        width: "50%",
-                                        marginLeft: "1%"
-                                    }}
-                                />
-                                {/* <Button type="primary" rounded> */}
-                                {/* <NavLink to={"/search/" + this.state.value}> */}
-                                <a href="/search">
-                                    {" "}
-                                    Do Something please
-                                </a>
-
-                                {/* </NavLink> */}
-                                {/* </Button> */}
-                                <Icon
-                                    type="shopping-cart"
-                                    style={{
-                                        fontSize: "50px",
-                                        marginLeft: "3%"
-                                    }}
+                                    style={{ width: "50%" }}
+                                    addonAfter={
+                                        <Button
+                                            type="primary"
+                                            size="large"
+                                            icon="search"
+                                            rounded
+                                        >
+                                            <a
+                                                href={
+                                                    "/search/" +
+                                                    this.state.value
+                                                }
+                                                style={{ color: "white" }}
+                                            >
+                                                Search
+                                            </a>
+                                        </Button>
+                                    }
                                 />
                             </div>
                         </Col>
                     </Row>{" "}
-                    <Row>
-                        <Col offset={9}>
-                            <div style={{ padding: "2%" }}>
-                                <Dropdown overlay={menu}>
-                                    <Button icon="appstore" rounded>
-                                        <NavLink to="/categories">
-                                            Categories
-                                        </NavLink>
-                                    </Button>
-                                </Dropdown>
-
-                                <Button icon="shop" rounded>
-                                    Stores
+                    {/* <Row> */}
+                    {/* <Col offset={9}> */}
+                    <div style={{ padding: "2%", textAlign: "center" }}>
+                        <Dropdown overlay={menu}>
+                            <a href="/categories">
+                                <Button icon="appstore" rounded>
+                                    Categories
                                 </Button>
+                            </a>
+                        </Dropdown>
 
-                                <Button icon="database" rounded>
-                                    Products
-                                </Button>
-                            </div>
-                        </Col>
-                    </Row>
+                        <Button icon="shop" rounded>
+                            Stores
+                        </Button>
+
+                        <Button icon="database" rounded>
+                            Products
+                        </Button>
+                    </div>
+                    {/* </Col> */}
+                    {/* </Row> */}
                 </div>
             </BrowserRouter>
         );

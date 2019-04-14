@@ -39,7 +39,7 @@ class Store extends Component {
         console.log("params received in props", this.state.id);
         axios.get("/api/shops/" + this.state.id).then(res => {
             const storedata = res.data;
-            console.log(storedata);
+            console.log('store information is',storedata);
             this.setState({ store: storedata });
         });
 
@@ -97,8 +97,8 @@ class Store extends Component {
         }
     }
 
-    getReviews (){
-        axios.get("/api/reviews/shops/"+this.state.id).then(res => {
+    getReviews() {
+        axios.get("/api/reviews/shops/" + this.state.id).then(res => {
             const reviewsData = res.data;
             console.log("Reviews  are", reviewsData);
             this.setState({ Reviews: reviewsData });
@@ -155,214 +155,195 @@ class Store extends Component {
                 </Row>
                 <Row style={{ marginTop: "3%" }}>
                     <Col span={12} offset={6}>
-                        <Card
-                            // title={
-                            //     <h1>
-                                    
-                            //     </h1>
-                            // }
-                            bordered={false}
-                            extra={
-                                <div>
-                                    {this.state.f && (
-                                        <Button
-                                            icon="check"
-                                            size="large"
-                                            shape="round"
-                                            style={{
-                                                backgroundColor: "#F57224",
-                                                color: "white"
-                                            }}
-                                            onClick={() =>
-                                                this.handleFollow(this.state.id)
-                                            }
-                                        >
-                                            Following
-                                        </Button>
-                                    )}
-                                    {!this.state.f && (
-                                        <Button
-                                            icon="plus"
-                                            size="large"
-                                            shape="round"
-                                            style={{
-                                                backgroundColor: "#F57224",
-                                                color: "white"
-                                            }}
-                                            onClick={() =>
-                                                this.handleFollow(this.state.id)
-                                            }
-                                        >
-                                            Follow
-                                        </Button>
-                                    )}
+                        <div>
+                            {this.state.f && (
+                                <Button
+                                    icon="check"
+                                    size="large"
+                                    shape="round"
+                                    style={{
+                                        backgroundColor: "#F57224",
+                                        color: "white"
+                                    }}
+                                    onClick={() =>
+                                        this.handleFollow(this.state.id)
+                                    }
+                                >
+                                    Following
+                                </Button>
+                            )}
+                            {!this.state.f && (
+                                <Button
+                                    icon="plus"
+                                    size="large"
+                                    shape="round"
+                                    style={{
+                                        backgroundColor: "#F57224",
+                                        color: "white"
+                                    }}
+                                    onClick={() =>
+                                        this.handleFollow(this.state.id)
+                                    }
+                                >
+                                    Follow
+                                </Button>
+                            )}
 
-                                    <Button
-                                        icon="message"
-                                        size="large"
-                                        shape="round"
-                                        style={{
-                                            backgroundColor: "#F57224",
-                                            color: "white"
-                                        }}
-                                    >
-                                        Message
-                                    </Button>
-                                    <div>
-                                        Number of Followers{" "}
-                                        <span>
-                                            <Rate disabled defaultValue={3} />
-                                        </span>
-                                    </div>
-                                </div>
-                            }
-                        >
-                            <div style={{ textAlign: "center" }}>
-                                <h1>{this.state.store.name}</h1>
-                            </div>
-                            <hr style={{ marginBottom: 0, width: 5 }} />
-                            <Row style={{ fontFamily: "sans-serif" }}>
-                                <Col
-                                    span={6}
-                                    style={{
-                                        textAlign: "center",
-                                        fontSize: 16
-                                    }}
-                                >
-                                    <Icon type="phone" />
-                                    {this.state.store.contact}
-                                </Col>
-                                <Col
-                                    span={8}
-                                    offset={2}
-                                    style={{
-                                        textAlign: "center",
-                                        fontSize: 16
-                                    }}
-                                >
-                                    <Icon type="info" />
-                                    {this.state.store.address}
-                                </Col>
-                                <Col
-                                    span={6}
-                                    style={{
-                                        textAlign: "center",
-                                        fontSize: 16
-                                    }}
-                                >
-                                    <Icon type="info" /> Store City: Lahore
-                                </Col>
-                            </Row>
-                            <hr />
-                            <Row
+                            <Button
+                                icon="message"
+                                size="large"
+                                shape="round"
                                 style={{
-                                    padding: 20,
-                                    backgroundColor: "#ECECEC"
+                                    backgroundColor: "#F57224",
+                                    color: "white"
                                 }}
                             >
-                                <Col
-                                    span={4}
-                                    style={{
-                                        textAlign: "center",
-                                        fontSize: 14,
-                                        borderRight: 50,
-                                        borderRightStyle: "solid",
-                                        borderWidth: 2,
-                                        height: "100%"
-                                    }}
-                                >
-                                    <Icon
-                                        type="bars"
-                                        style={{ fontSize: 20 }}
-                                    />{" "}
-                                    {this.state.store.store_type} type
-                                </Col>
+                                Message
+                            </Button>
+                            <div>
+                                Number of Followers{" "}
+                                <span>
+                                    <Rate disabled defaultValue={3} />
+                                </span>
+                            </div>
+                        </div>
+                        <div style={{ textAlign: "center" }}>
+                            <h1>{this.state.store.name}</h1>
+                        </div>
+                        <hr style={{ marginBottom: 0, width: 5 }} />
+                        <Row style={{ fontFamily: "sans-serif" }}>
+                            <Col
+                                span={6}
+                                style={{
+                                    textAlign: "center",
+                                    fontSize: 16
+                                }}
+                            >
+                                <Icon type="phone" />
+                                {this.state.store.contact}
+                            </Col>
+                            <Col
+                                span={8}
+                                offset={2}
+                                style={{
+                                    textAlign: "center",
+                                    fontSize: 16
+                                }}
+                            >
+                                <Icon type="info" />
+                                {this.state.store.address}
+                            </Col>
+                            <Col
+                                span={6}
+                                style={{
+                                    textAlign: "center",
+                                    fontSize: 16
+                                }}
+                            >
+                                <Icon type="info" /> Store City: Lahore
+                            </Col>
+                        </Row>
+                        <hr />
+                        <Row
+                            style={{
+                                padding: 20,
+                                backgroundColor: "#ECECEC"
+                            }}
+                        >
+                            <Col
+                                span={4}
+                                style={{
+                                    textAlign: "center",
+                                    fontSize: 14,
+                                    borderRight: 50,
+                                    borderRightStyle: "solid",
+                                    borderWidth: 2,
+                                    height: "100%"
+                                }}
+                            >
+                                <Icon type="bars" style={{ fontSize: 20 }} />{" "}
+                                {this.state.store.store_type} type
+                            </Col>
 
-                                <Col
-                                    span={8}
-                                    style={{
-                                        textAlign: "center",
-                                        fontSize: 14,
-                                        borderRight: 50,
-                                        borderRightStyle: "solid",
-                                        borderWidth: 2,
-                                        height: "100%"
-                                    }}
-                                >
-                                    <Icon
-                                        type="clock-circle"
-                                        style={{ fontSize: 20 }}
-                                    />{" "}
-                                    <h3 style={{ display: "inline" }}>
-                                        Opens at:
-                                    </h3>{" "}
-                                    {this.state.store.open_time}<br />
-                                    <Icon
-                                        type="clock-circle"
-                                        style={{ fontSize: 20 }}
-                                    />{" "}
-                                    <h3 style={{ display: "inline" }}>
-                                        Closes at:
-                                    </h3>{" "}
-                                    {this.state.store.close_time}
-                                </Col>
-                                <Col
-                                    span={4}
-                                    style={{
-                                        textAlign: "center",
-                                        fontSize: 14,
-                                        borderRight: 50,
-                                        borderRightStyle: "solid",
-                                        borderWidth: 2,
-                                        height: "100%"
-                                    }}
-                                >
-                                    <Icon
-                                        type="step-forward"
-                                        style={{ fontSize: 20 }}
-                                    />{" "}
-                                    <h3 style={{ display: "inline" }}>
-                                        Delivery:
-                                    </h3>{" "}
-                                   {this.state.delivery >0 && 'Yes'}
-                                   {!this.state.delivery >0 && 'No'}
-                                </Col>
-                                <Col
-                                    span={4}
-                                    style={{
-                                        textAlign: "center",
-                                        fontSize: 14,
-                                        borderRight: 50,
-                                        borderRightStyle: "solid",
-                                        borderWidth: 2,
-                                        height: "100"
-                                    }}
-                                >
-                                    <Icon
-                                        type="wifi"
-                                        style={{ fontSize: 20 }}
-                                    />{" "}
-                                    <h3 style={{ display: "inline" }}>Wifi</h3>{" "}
-                                    {this.state.wifi >0 && 'Yes'}
-                                   {!this.state.wifi >0 && 'No'}
-                                </Col>
-                                <Col
-                                    span={4}
-                                    style={{
-                                        textAlign: "center",
-                                        fontSize: 14
-                                    }}
-                                >
-                                    <Icon
-                                        type="credit-card"
-                                        style={{ fontSize: 20 }}
-                                    />{" "}
-                                    <h3 style={{ display: "inline" }}>Card:</h3>{" "}
-                                    {this.state.card_payment >0 && 'Yes'}
-                                   {!this.state.card_payment >0 && 'No'}
-                                </Col>
-                            </Row>
-                        </Card>
+                            <Col
+                                span={8}
+                                style={{
+                                    textAlign: "center",
+                                    fontSize: 14,
+                                    borderRight: 50,
+                                    borderRightStyle: "solid",
+                                    borderWidth: 2,
+                                    height: "100%"
+                                }}
+                            >
+                                <Icon
+                                    type="clock-circle"
+                                    style={{ fontSize: 20 }}
+                                />{" "}
+                                <h3 style={{ display: "inline" }}>Opens at:</h3>{" "}
+                                {this.state.store.open_time}
+                                <br />
+                                <Icon
+                                    type="clock-circle"
+                                    style={{ fontSize: 20 }}
+                                />{" "}
+                                <h3 style={{ display: "inline" }}>
+                                    Closes at:
+                                </h3>{" "}
+                                {this.state.store.close_time}
+                            </Col>
+                            <Col
+                                span={4}
+                                style={{
+                                    textAlign: "center",
+                                    fontSize: 14,
+                                    borderRight: 50,
+                                    borderRightStyle: "solid",
+                                    borderWidth: 2,
+                                    height: "100%"
+                                }}
+                            >
+                                <Icon
+                                    type="step-forward"
+                                    style={{ fontSize: 20 }}
+                                />{" "}
+                                <h3 style={{ display: "inline" }}>Delivery:</h3>{" "}
+                                {/* {this.state.delivery > 0 && "Yes"} */}
+                                {this.state.delivery==1 && "Yes"}
+                                {this.state.delivery!=1 && "No"}
+                            </Col>
+                            <Col
+                                span={4}
+                                style={{
+                                    textAlign: "center",
+                                    fontSize: 14,
+                                    borderRight: 50,
+                                    borderRightStyle: "solid",
+                                    borderWidth: 2,
+                                    height: "100"
+                                }}
+                            >
+                                <Icon type="wifi" style={{ fontSize: 20 }} />{" "}
+                                <h3 style={{ display: "inline" }}>Wifi</h3>{" "}
+                                {this.state.wifi > 0 && "Yes"}
+                                {!this.state.wifi > 0 && "No"}
+                            </Col>
+                            <Col
+                                span={4}
+                                style={{
+                                    textAlign: "center",
+                                    fontSize: 14
+                                }}
+                            >
+                                <Icon
+                                    type="credit-card"
+                                    style={{ fontSize: 20 }}
+                                />{" "}
+                                <h3 style={{ display: "inline" }}>Card:</h3>{" "}
+                                {this.state.card_payment && "Yes"}
+                                {!this.state.card_payment && "No"}
+                            </Col>
+                        </Row>
                     </Col>
                     {/* {this.state.store &&
                     <StoreDetails details={this.state.store} />
@@ -387,10 +368,14 @@ class Store extends Component {
 
                 <Row>
                     <Col lg={14} offset={6}>
-                    {this.state.Reviews &&
-                    <Reviews id={this.props.match.params.id} Reviews={this.state.Reviews} size={3} title='Store Reviews'/>
-                    }
-                        
+                        {this.state.Reviews && (
+                            <Reviews
+                                id={this.props.match.params.id}
+                                Reviews={this.state.Reviews}
+                                size={3}
+                                title="Store Reviews"
+                            />
+                        )}
                     </Col>
                 </Row>
             </div>
