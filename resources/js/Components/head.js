@@ -142,11 +142,15 @@ class Head extends Component {
                                         marginLeft: "1%"
                                     }}
                                 />
-                                <Button type="primary" rounded>
-                                    <NavLink to={"/search/" + this.state.value}>
-                                        Do Something please
-                                    </NavLink>
-                                </Button>
+                                {/* <Button type="primary" rounded> */}
+                                {/* <NavLink to={"/search/" + this.state.value}> */}
+                                <a href="/search">
+                                    {" "}
+                                    Do Something please
+                                </a>
+
+                                {/* </NavLink> */}
+                                {/* </Button> */}
                                 <Icon
                                     type="shopping-cart"
                                     style={{
@@ -159,7 +163,7 @@ class Head extends Component {
                     </Row>{" "}
                     <Row>
                         <Col offset={9}>
-                            <div style={{padding:'2%'}}>
+                            <div style={{ padding: "2%" }}>
                                 <Dropdown overlay={menu}>
                                     <Button icon="appstore" rounded>
                                         <NavLink to="/categories">

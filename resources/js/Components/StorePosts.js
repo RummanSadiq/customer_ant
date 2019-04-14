@@ -22,9 +22,9 @@ class StorePosts extends Component {
         return (
             <Card
                 title={<h2>Store Activity</h2>}
-                extra={<Button icon="plus">All</Button>}
+                // extra={<Button icon="plus">All</Button>}
                 bordered={false}
-                style={{ background: "#ECECEC" }}
+                style={{ background: "white" }}
             >
                 <List
                     itemLayout="vertical"
@@ -52,7 +52,8 @@ class StorePosts extends Component {
                             <List.Item.Meta
                                   avatar={<Avatar src={element.image_path} />}
                                 title={
-                                    <a href="">Store Name{element.store_id}</a>
+                                    
+                                    <a href={"store/" + element.id}>Store Name{element.store_id}</a>
                                 }
                                 description={element.created_at}
                             />
