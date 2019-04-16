@@ -114,24 +114,25 @@ class Head extends Component {
                                     size="large"
                                     style={{ width: "50%" }}
                                     addonAfter={
-                                        <Button
-                                            type="primary"
-                                            size="large"
-                                            icon="search"
-                                            rounded
-                                        >
-                                            <a
+                                       <a
                                                 href={
                                                     "/search/" +
                                                     this.state.value
                                                 }
                                                 style={{ color: "white" }}
-                                            >
+                                            > <Button
+                                            type="primary"
+                                            size="large"
+                                            icon="search"
+                                            rounded
+                                        >
+                                            
                                                 Search
-                                            </a>
-                                        </Button>
+                                            
+                                        </Button></a>
                                     }
                                 />
+                                <Icon type='shopping-cart'/>
                             </div>
                         </Col>
                     </Row>{" "}
