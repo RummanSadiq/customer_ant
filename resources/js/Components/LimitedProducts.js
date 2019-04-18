@@ -31,9 +31,13 @@ class Products extends Component {
         return (
             <Card
                 title={<h2>{this.state.title}</h2>}
-                extra={<Button icon="plus">All</Button>}
+                extra={
+                <div>
+                    {this.props.all && <Button icon="plus">All</Button>}
+                </div>
+                }
                 bordered={false}
-                style={{ background: "#ECECEC" }}
+                style={{ background: "#ECECEC", textAlign: "center" }}
             >
                 <List
                     grid={{
@@ -73,15 +77,11 @@ class Products extends Component {
                                     padding: "5%"
                                 }}
                             >
-                                {" "}
                                 <Meta
                                     title={element.name}
                                     description={element.category}
                                 />{" "}
                                 <List.Item.Meta
-                                    // avatar={
-                                    //     <Avatar src={element.store_picture} />
-                                    // }
                                     title={
                                         <NavLink
                                             to={"store/" + element.store_id}

@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import { Row, Col, Select, Button, Dropdown, Icon, Menu } from "antd";
-import Head from "./head";
-
 import Axios from "axios";
 import Stores from "./LimitedStores";
 import Products from "./LimitedProducts";
-const Option = Select.Option;
 
 class SearchComponent extends Component {
     constructor(props) {
@@ -18,15 +15,24 @@ class SearchComponent extends Component {
             "Lets see if props got here",
             this.props.match.params.value
         );
-        this.getProducts();
-        this.getStores();
+        // this.getProducts();
+        // this.getStores();
     }
 
     getProducts = input => {
-        if(input){
-           console.log("drop down returned", input); 
+        var search={
+            search: this.state.value
         }
-        
+        console.log('Input is', input);
+
+        if (input === 'High') {
+            search.high_price='High';
+        }
+        if (input === 'Low') {
+            search.low_price='Low';
+        }
+
+            console.log('Search is', search);
         Axios.get("/api/products").then(res => {
             const products = res.data;
             console.log("products data is", products);
@@ -62,11 +68,25 @@ class SearchComponent extends Component {
                                         <Dropdown
                                             overlay={
                                                 <Menu>
-                                                    <Menu.Item key="1">
+                                                    <Menu.Item
+                                                        key="1"
+                                                        onClick={() => {
+                                                            this.getProducts(
+                                                                "Location"
+                                                            );
+                                                        }}
+                                                    >
                                                         <Icon type="pushpin" />
                                                         Location
                                                     </Menu.Item>
-                                                    <Menu.Item key="2">
+                                                    <Menu.Item
+                                                        key="2"
+                                                        onClick={() => {
+                                                            this.getProducts(
+                                                                "Trending"
+                                                            );
+                                                        }}
+                                                    >
                                                         <Icon type="arrow-up" />
                                                         Trending
                                                     </Menu.Item>
@@ -81,7 +101,14 @@ class SearchComponent extends Component {
                                                         <Icon type="up" />
                                                         Price high to low
                                                     </Menu.Item>
-                                                    <Menu.Item key="4">
+                                                    <Menu.Item
+                                                        key="4"
+                                                        onClick={() => {
+                                                            this.getProducts(
+                                                                "Low"
+                                                            );
+                                                        }}
+                                                    >
                                                         <Icon type="down" />
                                                         Price low to high
                                                     </Menu.Item>

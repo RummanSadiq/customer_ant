@@ -5,7 +5,7 @@ import SearchComponent from './Search';
 import Categories from './Categories';
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import ProductDetails from './ProductDetails';
-
+import MyList from './myList';
 
 class SubPage extends Component {
     state = {  }
@@ -18,6 +18,8 @@ class SubPage extends Component {
                 <Route exact path='/product/:id' component={ProductDetails}/>
                 <Route  path="/search/:value" component={ SearchComponent }/>
                 <Route path='/categories' component={Categories}/>
+                <Route path='/mylist' component={MyList}/>
+
 
             </Switch>
                 
