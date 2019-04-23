@@ -9,6 +9,7 @@ class ProductDetails extends Component {
         product: {}
     };
     componentDidMount() {
+        console.log('Received product id is',this.props.match.params.id);
         Axios.get("/api/products/" + this.props.match.params.id).then(res => {
             const product = res.data;
             console.log("product data is", product);

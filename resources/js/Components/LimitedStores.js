@@ -50,7 +50,7 @@ class Stores extends Component {
     handleFollow(id) {
         Axios.get("/api/follow/" + id)
             .then(res => {
-                message.success("following store");
+                // message.success("following store");
                 this.getFollowed();
                 this.getStores();
             })

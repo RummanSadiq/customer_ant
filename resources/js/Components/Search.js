@@ -18,21 +18,38 @@ class SearchComponent extends Component {
         // this.getProducts();
         // this.getStores();
     }
+    getLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(this.showPosition);
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+    };
 
+    showPosition = position => {
+        console.log(
+            "Latitude: " +
+                position.coords.latitude +
+                "Longitude: " +
+                position.coords.longitude
+        );
+    };
     getProducts = input => {
-        var search={
+        var search = {
             search: this.state.value
-        }
-        console.log('Input is', input);
+        };
 
-        if (input === 'High') {
-            search.high_price='High';
+        this.getLocation();
+        console.log("Input is", input);
+
+        if (input === "High") {
+            search.high_price = "High";
         }
-        if (input === 'Low') {
-            search.low_price='Low';
+        if (input === "Low") {
+            search.low_price = "Low";
         }
 
-            console.log('Search is', search);
+        console.log("Search is", search);
         Axios.get("/api/products").then(res => {
             const products = res.data;
             console.log("products data is", products);
