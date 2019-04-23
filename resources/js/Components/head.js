@@ -63,6 +63,13 @@ class Head extends Component {
         this.setState({ value: e.target.value });
     };
 
+    doLogout = e => {
+        e.preventDefault();
+        axios.post("/logout").then(res => {
+            window.location.reload();
+        });
+    };
+
     render() {
         return (
             <BrowserRouter>
@@ -77,18 +84,31 @@ class Head extends Component {
                                 backgroundColor: "#F5F5F5"
                             }}
                         >
+                            {this.state.logged.id && (
+                                <Menu.Item key="2">
+                                    <a href="/messages">Messages</a>
+                                </Menu.Item>
+                            )}
                             <Menu.Item key="1">Store owner?</Menu.Item>
                             {this.state.logged.id && (
-                                <Menu.Item key="2">Logout</Menu.Item>
+                                <Menu.Item key="2">
+                                    <NavLink to="" onClick={this.doLogout}>
+                                        Logout
+                                    </NavLink>
+                                </Menu.Item>
                             )}
                             {!this.state.logged.id && (
-                                <Menu.Item key="2">Login</Menu.Item>
+                                <Menu.Item key="2">
+                                    <a href="/login">Login</a>
+                                </Menu.Item>
                             )}
                             {this.state.logged.id && (
                                 <Menu.Item key="3">Profile</Menu.Item>
                             )}
                             {!this.state.logged.id && (
-                                <Menu.Item key="3">Signup</Menu.Item>
+                                <Menu.Item key="3">
+                                    <a href="/register">Signup</a>
+                                </Menu.Item>
                             )}
                         </Menu>
                     </div>
@@ -101,14 +121,14 @@ class Head extends Component {
                                     position: "relative"
                                 }}
                             >
-                                <NavLink to="/">
+                                <a href="/">
                                     <img
                                         src={logo}
                                         alt="Shopx"
                                         width="8%"
                                         height="8%"
                                     />
-                                </NavLink>
+                                </a>
                                 <Input
                                     onChange={this.handleSearch}
                                     size="large"

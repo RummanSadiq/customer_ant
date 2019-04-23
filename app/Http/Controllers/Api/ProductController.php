@@ -139,16 +139,21 @@ class ProductController extends Controller
         $product->store->user;
         $reviews = $product->reviews;
 
-        $total = 0;
-        $noOfReviews = 0;
-        foreach ($reviews as $rev) {
-            $total += $rev['rating'];
-            $noOfReviews++;
-            $rev->user;
+
+        if (count($reviews) > 0) {
+
+            $total = 0;
+            $noOfReviews = 0;
+
+            foreach ($reviews as $rev) {
+                $total += $rev['rating'];
+                $noOfReviews++;
+                $rev->user;
+            }
+
+
+            $product["avg_rating"] = $total / $noOfReviews;
         }
-
-
-        $product["avg_rating"] = $total / $noOfReviews;
         $product["key"] = $product->id;
 
         $product["category"] = Category::find($product->category_id)->name;
