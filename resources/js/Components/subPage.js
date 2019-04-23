@@ -6,6 +6,7 @@ import Categories from "./Categories";
 import Chat from "./Chat";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import ProductDetails from "./ProductDetails";
+import MyList from "./myList";
 
 class SubPage extends Component {
     state = {};
@@ -22,22 +23,7 @@ class SubPage extends Component {
                     />
                     <Route path="/search/:value" component={SearchComponent} />
                     <Route path="/categories" component={Categories} />
-                    <Route path="/messages" component={Chat} />
-                    <Route
-                        path="/login"
-                        component={() => {
-                            // window.location.href = "/login";
-                            window.location.reload();
-                            return null;
-                        }}
-                    />
-                    <Route
-                        path="/logout"
-                        component={() => {
-                            window.location.href = "/logout";
-                            return null;
-                        }}
-                    />
+                    <Route path="/mylist" component={MyList} />
                 </Switch>
             </BrowserRouter>
         );

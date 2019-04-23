@@ -39,7 +39,7 @@ class Store extends Component {
         console.log("params received in props", this.state.id);
         axios.get("/api/shops/" + this.state.id).then(res => {
             const storedata = res.data;
-            console.log('store information is',storedata);
+            console.log("store information is", storedata);
             this.setState({ store: storedata });
         });
 
@@ -309,8 +309,8 @@ class Store extends Component {
                                 />{" "}
                                 <h3 style={{ display: "inline" }}>Delivery:</h3>{" "}
                                 {/* {this.state.delivery > 0 && "Yes"} */}
-                                {this.state.delivery==1 && "Yes"}
-                                {this.state.delivery!=1 && "No"}
+                                {this.state.delivery == 1 && "Yes"}
+                                {this.state.delivery != 1 && "No"}
                             </Col>
                             <Col
                                 span={4}
@@ -351,7 +351,12 @@ class Store extends Component {
                 </Row>
                 <Row>
                     <Col lg={14} offset={6}>
-                        <Products products={this.state.products} />
+                        <Products
+                            products={this.state.products}
+                            size={6}
+                            title="Store's Products"
+                            all={true}
+                        />
                     </Col>
                 </Row>
                 <Row>

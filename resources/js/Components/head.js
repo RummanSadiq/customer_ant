@@ -21,7 +21,6 @@ import axios from "axios";
 
 import "../css/sbar.css";
 import MenuItem from "antd/lib/menu/MenuItem";
-const Search = Input.Search;
 
 const menu = (
     <Menu>
@@ -134,29 +133,31 @@ class Head extends Component {
                                     size="large"
                                     style={{ width: "50%" }}
                                     addonAfter={
-                                        <Button
-                                            type="primary"
-                                            size="large"
-                                            icon="search"
-                                            rounded
+                                        <a
+                                            href={"/search/" + this.state.value}
+                                            style={{ color: "white" }}
                                         >
-                                            <a
-                                                href={
-                                                    "/search/" +
-                                                    this.state.value
-                                                }
-                                                style={{ color: "white" }}
+                                            {" "}
+                                            <Button
+                                                type="primary"
+                                                size="large"
+                                                icon="search"
+                                                rounded
                                             >
                                                 Search
-                                            </a>
-                                        </Button>
+                                            </Button>
+                                        </a>
                                     }
                                 />
+                                <a href="/mylist">
+                                    <Icon
+                                        type="shopping-cart"
+                                        style={{ fontSize: "50px" }}
+                                    />
+                                </a>
                             </div>
                         </Col>
                     </Row>{" "}
-                    {/* <Row> */}
-                    {/* <Col offset={9}> */}
                     <div style={{ padding: "2%", textAlign: "center" }}>
                         <Dropdown overlay={menu}>
                             <a href="/categories">
@@ -174,8 +175,6 @@ class Head extends Component {
                             Products
                         </Button>
                     </div>
-                    {/* </Col> */}
-                    {/* </Row> */}
                 </div>
             </BrowserRouter>
         );

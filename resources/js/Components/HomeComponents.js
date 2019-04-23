@@ -20,13 +20,15 @@ class HomeComponents extends Component {
         go: false
     };
     componentDidMount() {
+        this.getProducts();
+        this.getStores();
+    }
+    getProducts() {
         Axios.get("/api/products").then(res => {
             const products = res.data;
             console.log("products data is", products);
             this.setState({ products: products });
         });
-
-        this.getStores();
     }
     goSearch = () => {
         console.log("inside go search");
@@ -112,6 +114,7 @@ class HomeComponents extends Component {
                                             products={this.state.products}
                                             title="Explore Products"
                                             size={6}
+                                            all={true}
                                         />
                                     )}
                                 </Col>
