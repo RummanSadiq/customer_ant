@@ -62,6 +62,13 @@ class Head extends Component {
         this.setState({ value: e.target.value });
     };
 
+    doLogout = e => {
+        e.preventDefault();
+        axios.post("/logout").then(res => {
+            window.location.reload();
+        });
+    };
+
     render() {
         return (
             <BrowserRouter>
@@ -103,14 +110,14 @@ class Head extends Component {
                                     marginLeft: "20%"
                                 }}
                             >
-                                <NavLink to="/">
+                                <a href="/">
                                     <img
                                         src={logo}
                                         alt="Shopx"
                                         width="100"
                                         height="80"
                                     />
-                                </NavLink>
+                                </a>
                             </div>
                         </Col>
                         <Col span={12}>

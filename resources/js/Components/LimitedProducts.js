@@ -68,6 +68,11 @@ class Products extends Component {
                                             alt="example"
                                             src={element.display_picture}
                                             onClick={this.setRedirect}
+                                            style={{
+                                                width: 188,
+                                                height: 290,
+                                                padding: "5%"
+                                            }}
                                         />
                                     </div>
                                 }
