@@ -154,59 +154,63 @@ class Store extends Component {
                     </Col>
                 </Row>
                 <Row style={{ marginTop: "3%" }}>
-                    <Col span={12} offset={6}>
-                        <div>
-                            {this.state.f && (
-                                <Button
-                                    icon="check"
-                                    size="large"
-                                    shape="round"
-                                    style={{
-                                        backgroundColor: "#F57224",
-                                        color: "white"
-                                    }}
-                                    onClick={() =>
-                                        this.handleFollow(this.state.id)
-                                    }
-                                >
-                                    Following
-                                </Button>
-                            )}
-                            {!this.state.f && (
-                                <Button
-                                    icon="plus"
-                                    size="large"
-                                    shape="round"
-                                    style={{
-                                        backgroundColor: "#F57224",
-                                        color: "white"
-                                    }}
-                                    onClick={() =>
-                                        this.handleFollow(this.state.id)
-                                    }
-                                >
-                                    Follow
-                                </Button>
-                            )}
+                    <Col>
+                        <Row>
+                            <Col span={12} offset={6}>
+                                <div>
+                                    {this.state.f && (
+                                        <Button
+                                            icon="check"
+                                            size="large"
+                                            shape="round"
+                                            style={{
+                                                backgroundColor: "#F57224",
+                                                color: "white"
+                                            }}
+                                            onClick={() =>
+                                                this.handleFollow(this.state.id)
+                                            }
+                                        >
+                                            Following
+                                        </Button>
+                                    )}
+                                    {!this.state.f && (
+                                        <Button
+                                            icon="plus"
+                                            size="large"
+                                            shape="round"
+                                            style={{
+                                                backgroundColor: "#F57224",
+                                                color: "white"
+                                            }}
+                                            onClick={() =>
+                                                this.handleFollow(this.state.id)
+                                            }
+                                        >
+                                            Follow
+                                        </Button>
+                                    )}
 
-                            <Button
-                                icon="message"
-                                size="large"
-                                shape="round"
-                                style={{
-                                    backgroundColor: "#F57224",
-                                    color: "white"
-                                }}
-                            >
-                                Message
-                            </Button>
-                            <div>
-                                Number of Followers{" "}
-                                <span>
-                                    <Rate disabled defaultValue={3} />
-                                </span>
-                            </div>
-                        </div>
+                                    <Button
+                                        icon="message"
+                                        size="large"
+                                        shape="round"
+                                        style={{
+                                            backgroundColor: "#F57224",
+                                            color: "white"
+                                        }}
+                                    >
+                                        Message
+                                    </Button>
+                                    <div>
+                                        Number of Followers
+                                        <span>
+                                            <Rate disabled defaultValue={3} />
+                                        </span>
+                                    </div>
+                                </div>
+                            </Col>
+                        </Row>
                         <div style={{ textAlign: "center" }}>
                             <h1>{this.state.store.name}</h1>
                         </div>

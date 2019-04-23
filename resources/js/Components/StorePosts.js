@@ -53,7 +53,7 @@ class StorePosts extends Component {
                                   avatar={<Avatar src={element.image_path} />}
                                 title={
                                     
-                                    <a href={"store/" + element.id}>Store Name{element.store_id}</a>
+                                    <a href={"store/" + element.id}>{element.name}</a>
                                 }
                                 description={element.created_at}
                             />

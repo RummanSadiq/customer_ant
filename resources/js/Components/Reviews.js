@@ -12,7 +12,7 @@ import {
     Modal
 } from "antd";
 import axios from "axios";
-import AddReviewForm from './ReviewForm';
+import AddReviewForm from "./ReviewForm";
 
 class Reviews extends Component {
     constructor(props) {
@@ -51,7 +51,11 @@ class Reviews extends Component {
                 <Card
                     title={<h2>{this.state.title}</h2>}
                     bordered={false}
-                    extra={<Button icon="plus" onClick={this.showModal}>Add a Review</Button>}
+                    extra={
+                        <Button icon="plus" onClick={this.showModal}>
+                            Add a Review
+                        </Button>
+                    }
                     style={{ background: "#ECECEC" }}
                 >
                     <List
@@ -66,7 +70,7 @@ class Reviews extends Component {
                         dataSource={this.state.Reviews}
                         renderItem={item => (
                             <List.Item
-                                key={item.title}
+                                key={item.id}
                                 extra={
                                     <img
                                         width={272}
@@ -81,10 +85,12 @@ class Reviews extends Component {
                                         <a href={item.href}>{item.username}</a>
                                     }
                                     description={
-                                        <Rate
-                                            disabled
-                                            defaultValue={item.rating}
-                                        />
+                                        <div>
+                                            <Rate
+                                                disabled
+                                                defaultValue={item.rating}
+                                            />
+                                        </div>
                                     }
                                 />
                                 {item.description}
@@ -98,7 +104,7 @@ class Reviews extends Component {
                     // onOk={this.handleOk}
                     onCancel={this.handleCancel}
                 >
-                    <AddReviewForm handleok={this.handleCancel} item_id={1}/>
+                    <AddReviewForm handleok={this.handleCancel} item_id={1} />
                 </Modal>
             </div>
         );

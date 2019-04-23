@@ -62,7 +62,7 @@ class ProductDetails extends Component {
                 </Row>
                 <Row style={{ backgroundColor: "white" }}>
                     <Col span={16} offset={4}>
-                        <Products title='Similar products' products={this.state.products} size={6}/>
+                        <Products title='Similar products' products={this.state.products} size={6} all={true}/>
                     </Col>
                 </Row>
             </div>
@@ -71,3 +71,4 @@ class ProductDetails extends Component {
 }
 
 export default ProductDetails;
+

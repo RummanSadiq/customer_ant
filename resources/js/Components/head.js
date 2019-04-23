@@ -66,76 +66,86 @@ class Head extends Component {
         return (
             <BrowserRouter>
                 <div>
-                    <div style={{ backgroundColor: "#F5F5F5" }}>
-                        <Menu
-                            theme="light"
-                            mode="horizontal"
-                            style={{
-                                lineHeight: "30px",
-                                marginLeft: "70%",
-                                backgroundColor: "#F5F5F5"
-                            }}
-                        >
-                            <Menu.Item key="1">Store owner?</Menu.Item>
-                            {this.state.logged.id && (
-                                <Menu.Item key="2">Logout</Menu.Item>
-                            )}
-                            {!this.state.logged.id && (
-                                <Menu.Item key="2">Login</Menu.Item>
-                            )}
-                            {this.state.logged.id && (
-                                <Menu.Item key="3">Profile</Menu.Item>
-                            )}
-                            {!this.state.logged.id && (
-                                <Menu.Item key="3">Signup</Menu.Item>
-                            )}
-                        </Menu>
-                    </div>
                     <Row>
-                        <Col offset={4}>
+                        <Col>
+                            <div style={{ backgroundColor: "#F5F5F5" }}>
+                                <Menu
+                                    theme="light"
+                                    mode="horizontal"
+                                    style={{
+                                        lineHeight: "30px",
+                                        // marginLeft: "70%",
+                                        backgroundColor: "#F5F5F5"
+                                    }}
+                                >
+                                    <Menu.Item key="1">Store owner?</Menu.Item>
+                                    {this.state.logged.id && (
+                                        <Menu.Item key="2">Logout</Menu.Item>
+                                    )}
+                                    {!this.state.logged.id && (
+                                        <Menu.Item key="2">Login</Menu.Item>
+                                    )}
+                                    {this.state.logged.id && (
+                                        <Menu.Item key="3">Profile</Menu.Item>
+                                    )}
+                                    {!this.state.logged.id && (
+                                        <Menu.Item key="3">Signup</Menu.Item>
+                                    )}
+                                </Menu>
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row style={{ marginTop: "2%" }}>
+                        <Col span={6}>
                             <div
                                 style={{
-                                    paddingRight: "50px",
-                                    padding: "1%",
-                                    position: "relative"
+                                    position: "relative",
+                                    marginLeft: "20%"
                                 }}
                             >
                                 <NavLink to="/">
                                     <img
                                         src={logo}
                                         alt="Shopx"
-                                        width="8%"
-                                        height="8%"
+                                        width="100"
+                                        height="80"
                                     />
                                 </NavLink>
-                                <Input
-                                    onChange={this.handleSearch}
-                                    size="large"
-                                    style={{ width: "50%" }}
-                                    addonAfter={
-                                        <a
-                                            href={"/search/" + this.state.value}
-                                            style={{ color: "white" }}
-                                        >
-                                            {" "}
-                                            <Button
-                                                type="primary"
-                                                size="large"
-                                                icon="search"
-                                                rounded
-                                            >
-                                                Search
-                                            </Button>
-                                        </a>
-                                    }
-                                />
-                                <a href="/mylist">
-                                    <Icon
-                                        type="shopping-cart"
-                                        style={{ fontSize: "50px" }}
-                                    />
-                                </a>
                             </div>
+                        </Col>
+                        <Col span={12}>
+                            <Input
+                                onChange={this.handleSearch}
+                                size="large"
+                                style={{ width: "100%" }}
+                                addonAfter={
+                                    <a
+                                        href={"/search/" + this.state.value}
+                                        style={{ color: "white" }}
+                                    >
+                                        {" "}
+                                        <Button
+                                            type="primary"
+                                            // size="large"
+                                            icon="search"
+                                            rounded
+                                        >
+                                            Search
+                                        </Button>
+                                    </a>
+                                }
+                            />
+                        </Col>
+                        <Col span={6}>
+                            <a href="/mylist">
+                                <Icon
+                                    type="shopping-cart"
+                                    style={{
+                                        fontSize: "400%",
+                                        marginLeft: "10%"
+                                    }}
+                                />
+                            </a>
                         </Col>
                     </Row>{" "}
                     <div style={{ padding: "2%", textAlign: "center" }}>

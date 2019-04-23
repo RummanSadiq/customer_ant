@@ -38,7 +38,7 @@ class HomeComponents extends Component {
     getStores() {
         Axios.get("/api/shops").then(res => {
             const shops = res.data;
-            console.log("Shops are", shops);
+            console.log("Shops received are", shops);
             this.setState({ shops: shops });
         });
     }
@@ -91,16 +91,18 @@ class HomeComponents extends Component {
                         </Carousel>
                     </Col>
                 </Row>
-                <Col>
+                <div>
                     {" "}
                     <Tabs
                         defaultActiveKey="1"
                         size={"large"}
-                        style={{ textAlign: "center" }}
+                        style={{ textAlign: "center"}}
                     >
                         <TabPane tab="Browse" key="1">
-                            <Row>
-                                <Col lg={16} offset={4}>
+                            <Row style={{textAlign: "center"}}>
+                            <Col span={2}>
+                            </Col>
+                                <Col lg={20} xs={24} sm={24}>
                                     {this.state.shops && (
                                         <Stores
                                             shops={this.state.shops}
@@ -118,6 +120,8 @@ class HomeComponents extends Component {
                                         />
                                     )}
                                 </Col>
+                                <Col span={2}>
+                            </Col>
                             </Row>
                         </TabPane>
                         <TabPane tab="Explore" key="2">
@@ -128,7 +132,7 @@ class HomeComponents extends Component {
                             </Row>
                         </TabPane>
                     </Tabs>
-                </Col>
+                </div>
             </div>
         );
     }
