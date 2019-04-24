@@ -105,7 +105,7 @@ class Stores extends Component {
                                     <NavLink to={"store/" + element.id}>
                                         <img
                                             alt="example"
-                                            src={element.display_picture}
+                                            src={element.attachments[0].url}
                                         />
                                     </NavLink>
                                 }
